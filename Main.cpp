@@ -5,6 +5,15 @@ using namespace std;
 
 // TODO Separate classes into individual files
 
+class Node{
+
+};
+
+class Layer{
+    public:
+    vector<Node> nodes;
+};
+
 class ArtificialNeuralNetwork
 {
 
@@ -19,6 +28,8 @@ public:
     }
 
 private:
+
+
 };
 
 int main()
