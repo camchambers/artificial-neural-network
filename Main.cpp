@@ -7,10 +7,11 @@ using namespace std;
 
 class Connection
 {
+
 public:
     Connection()
     {
-        weight = 0;
+        weight = (double)rand() / RAND_MAX * 2.0 - 1.0;
     }
     double weight;
     double deltaWeight;
@@ -22,6 +23,7 @@ public:
 
 class Neuron
 {
+
 public:
     Neuron()
     {
@@ -42,6 +44,7 @@ private:
 
 class Layer
 {
+
 public:
     unsigned layerIndex;
     vector<Neuron> neurons;
@@ -80,7 +83,8 @@ public:
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             cout << topology[layerIndex];
-            if (layerIndex < (topology.size() -1)){
+            if (layerIndex < (topology.size() - 1))
+            {
                 cout << ":";
             }
         }
@@ -117,7 +121,8 @@ private:
 int main()
 {
 
-    cout << "ARTIFICIAL NERAL NETWORK" << endl << endl;
+    cout << "ARTIFICIAL NERAL NETWORK" << endl
+         << endl;
 
     // Provide a seed for random number generation
     srand(static_cast<unsigned int>(clock()));
@@ -130,6 +135,8 @@ int main()
 
     // Instantiate a new neural network
     ArtificialNeuralNetwork ann(topology);
+
+    // Print neural network contents
     ann.print();
 
     return 0;
