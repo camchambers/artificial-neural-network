@@ -5,13 +5,21 @@ using namespace std;
 
 // TODO Separate classes into individual files
 
-class Node{
-
+class Node
+{
 };
 
-class Layer{
-    public:
+class Layer
+{
+public:
     vector<Node> nodes;
+    Layer(int numberOfNodes)
+    {
+        for (unsigned nodeIndex = 0; nodeIndex < numberOfNodes; ++nodeIndex)
+        {
+            cout << "Adding node " << nodeIndex << " to layer." << endl;
+        }
+    }
 };
 
 class ArtificialNeuralNetwork
@@ -28,8 +36,7 @@ public:
     }
 
 private:
-
-
+    vector<Layer> layers;
 };
 
 int main()
