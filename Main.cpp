@@ -41,14 +41,18 @@ private:
 class Layer
 {
 public:
+    unsigned layerIndex;
     vector<Neuron> neurons;
 
-    Layer(unsigned numberOfNeurons)
+    Layer(unsigned numberOfNeurons, unsigned index)
     {
+        // Assign layer index
+        layerIndex = index;
+
         // Create layer nodes based on the number of neurons specified
         for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
         {
-            cout << "Adding node " << (neuronIndex + 1) << " to layer." << endl;
+            cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
             neurons.push_back(Neuron());
         }
     }
@@ -72,20 +76,22 @@ public:
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             unsigned layerSize = topology[layerIndex];
-            cout << "Adding a " << layerSize << " node layer to the neural network." << endl;
-            layers.push_back(Layer(layerSize));
+            cout << endl << "Adding a " << layerSize << " node layer to the neural network." << endl;
+            layers.push_back(Layer(layerSize,layerIndex));
         }
     }
 
     // Prints values of each node for neural network
     void print()
     {
+        cout << endl << "Printing neural network:" << endl;
         for (unsigned layerIndex = 0; layerIndex < layers.size(); ++layerIndex)
         {
             cout << "Layer " << (layerIndex + 1) << ": ";
             layers[layerIndex].print();
             cout <<  endl;
         }
+        cout << endl;
     }
 
 private:
