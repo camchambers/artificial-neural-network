@@ -7,13 +7,12 @@ using namespace std;
 
 class Connection
 {
+public:
     double weight;
 };
 
 class Neuron
 {
-public:
-    Neuron();
 
 private:
     vector<Connection> connections;
@@ -26,10 +25,11 @@ public:
 
     Layer(unsigned numberOfNeurons)
     {
+        // Create layer nodes based on the number of neurons specified
         for (unsigned nodeIndex = 0; nodeIndex < numberOfNeurons; ++nodeIndex)
         {
             cout << "Adding node " << (nodeIndex + 1) << " to layer." << endl;
-    
+            neurons.push_back(Neuron());
         }
     }
 };
@@ -41,6 +41,7 @@ public:
     ArtificialNeuralNetwork(const vector<unsigned> &topology)
     {
 
+        // Create neural network layers
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             unsigned layerSize = topology[layerIndex];
