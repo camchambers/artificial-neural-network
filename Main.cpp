@@ -5,19 +5,31 @@ using namespace std;
 
 // TODO Separate classes into individual files
 
-class Node
+class Connection
 {
+    double weight;
+};
+
+class Neuron
+{
+public:
+    Neuron();
+
+private:
+    vector<Connection> connections;
 };
 
 class Layer
 {
 public:
-    vector<Node> nodes;
-    Layer(int numberOfNodes)
+    vector<Neuron> neurons;
+
+    Layer(unsigned numberOfNeurons)
     {
-        for (unsigned nodeIndex = 0; nodeIndex < numberOfNodes; ++nodeIndex)
+        for (unsigned nodeIndex = 0; nodeIndex < numberOfNeurons; ++nodeIndex)
         {
-            cout << "Adding node " << nodeIndex << " to layer." << endl;
+            cout << "Adding node " << (nodeIndex + 1) << " to layer." << endl;
+    
         }
     }
 };
@@ -31,7 +43,9 @@ public:
 
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
-            cout << "Adding a " << topology[layerIndex] << " node layer to the neural network." << endl;
+            unsigned layerSize = topology[layerIndex];
+            cout << "Adding a " << layerSize << " node layer to the neural network." << endl;
+            layers.push_back(Layer(layerSize));
         }
     }
 
