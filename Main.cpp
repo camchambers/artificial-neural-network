@@ -15,6 +15,7 @@ public:
     }
     double weight;
     double deltaWeight;
+
     void print()
     {
         cout << " (" << weight << ") ";
@@ -25,17 +26,29 @@ class Neuron
 {
 
 public:
-    Neuron()
+    Neuron(unsigned numberOfOutputConnections)
     {
-        connections.push_back(Connection());
+
+        // Create connections for each neuron
+        if (numberOfOutputConnections > 0)
+        {
+            for (unsigned connectionIndex = 0; connectionIndex < numberOfOutputConnections; ++connectionIndex)
+            {
+                cout << "Adding connection " << (connectionIndex + 1) << " with " << numberOfOutputConnections << " outputs" << endl;
+                connections.push_back(Connection());
+            }
+        }
     }
     void print()
     {
         // Create layer nodes based on the number of neurons specified
+        cout << "[";
         for (unsigned connectionIndex = 0; connectionIndex < connections.size(); ++connectionIndex)
         {
+
             connections[connectionIndex].print();
         }
+        cout << "]";
     }
 
 private:
@@ -49,7 +62,7 @@ public:
     unsigned layerIndex;
     vector<Neuron> neurons;
 
-    Layer(unsigned numberOfNeurons, unsigned index)
+    Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     {
         // Assign layer index
         layerIndex = index;
@@ -58,7 +71,7 @@ public:
         for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
         {
             cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
-            neurons.push_back(Neuron());
+            neurons.push_back(Neuron(numberOfOutputs));
         }
     }
 
@@ -90,13 +103,22 @@ public:
         }
         cout << " toplogy." << endl;
 
+        // Number of connections to the next layer
+        unsigned int numberOfOutputs = 0;
+
         // Create neural network layers
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             unsigned layerSize = topology[layerIndex];
             cout << endl
-                 << "Adding a " << layerSize << " node layer to the neural network." << endl;
-            layers.push_back(Layer(layerSize, layerIndex));
+                 << "Adding a " << layerSize << " node layer to the neural network."
+                 << endl;
+
+            // Need to pass in  the number of connections in the net layer
+            cout << "Layer index: " << layerIndex << " Toplogy size: " << topology.size();
+            numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
+
+            layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
         }
     }
 
