@@ -16,9 +16,10 @@ public:
     double weight;
     double deltaWeight;
 
-    void print()
+    void print(unsigned connectionIndex)
     {
-        cout << " (" << weight << ") ";
+        cout << endl
+             << "\t\tConnection " << connectionIndex + 1 << ": " << weight;
     }
 };
 
@@ -28,7 +29,6 @@ class Neuron
 public:
     Neuron(unsigned numberOfOutputConnections)
     {
-
         // Create connections for each neuron
         if (numberOfOutputConnections > 0)
         {
@@ -39,16 +39,18 @@ public:
             }
         }
     }
-    void print()
+
+    void print(unsigned neuronIndex)
     {
         // Create layer nodes based on the number of neurons specified
-        cout << "[";
+        cout << endl
+             << "\tNeuron " << neuronIndex + 1;
         for (unsigned connectionIndex = 0; connectionIndex < connections.size(); ++connectionIndex)
         {
 
-            connections[connectionIndex].print();
+            connections[connectionIndex].print(connectionIndex);
         }
-        cout << "]";
+        cout << endl;
     }
 
 private:
@@ -57,7 +59,6 @@ private:
 
 class Layer
 {
-
 public:
     unsigned layerIndex;
     vector<Neuron> neurons;
@@ -79,14 +80,13 @@ public:
     {
         for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
         {
-            neurons[neuronIndex].print();
+            neurons[neuronIndex].print(neuronIndex);
         }
     }
 };
 
 class ArtificialNeuralNetwork
 {
-
 public:
     ArtificialNeuralNetwork(const vector<unsigned> &topology)
     {
@@ -115,21 +115,21 @@ public:
                  << endl;
 
             // Need to pass in  the number of connections in the net layer
-            cout << "Layer index: " << layerIndex << " Toplogy size: " << topology.size();
             numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
 
             layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
         }
     }
 
-    // Prints values of each node for neural network
     void print()
     {
         cout << endl
-             << "Printing neural network:" << endl;
+             << "Printing neural network:" << endl
+             << endl;
+
         for (unsigned layerIndex = 0; layerIndex < layers.size(); ++layerIndex)
         {
-            cout << "Layer " << (layerIndex + 1) << ": ";
+            cout << "Layer " << (layerIndex + 1) << endl;
             layers[layerIndex].print();
             cout << endl;
         }
@@ -142,7 +142,6 @@ private:
 
 int main()
 {
-
     cout << "ARTIFICIAL NERAL NETWORK" << endl
          << endl;
 
