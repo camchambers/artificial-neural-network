@@ -223,10 +223,7 @@ int main()
     srand(static_cast<unsigned int>(clock()));
 
     // Create a vector to store a topology
-    vector<unsigned> topology;
-    topology.push_back(3);
-    topology.push_back(4);
-    topology.push_back(2);
+    vector<unsigned> topology = {3, 4, 2};
 
     // Instantiate a new artificial neural network object
     ArtificialNeuralNetwork ann(topology);
