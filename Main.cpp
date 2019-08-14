@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 
 using namespace std;
@@ -18,8 +19,7 @@ public:
 
     void print(unsigned connectionIndex)
     {
-        cout << endl
-             << "\t\tConnection " << connectionIndex + 1 << ": " << weight;
+        cout << "(" << (weight < 0 ? " " : "") << weight << ")";
     }
 };
 
@@ -43,8 +43,7 @@ public:
     void print(unsigned neuronIndex)
     {
         // Create layer nodes based on the number of neurons specified
-        cout << endl
-             << "\tNeuron " << neuronIndex + 1;
+        cout << "\tNeuron " << neuronIndex + 1 << " ";
         for (unsigned connectionIndex = 0; connectionIndex < connections.size(); ++connectionIndex)
         {
 
@@ -92,7 +91,7 @@ public:
     {
 
         // Print network topology
-        cout << "Generating a neural network with a ";
+        cout << "Creating a neural network with a ";
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             cout << topology[layerIndex];
@@ -119,7 +118,7 @@ public:
 
             layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
         }
-    }
+    };
 
     void print()
     {
@@ -134,7 +133,12 @@ public:
             cout << endl;
         }
         cout << endl;
-    }
+    };
+
+    void train(vector<double> &inputVals)
+    {
+        cout << "Training Neural Network" << endl;
+    };
 
 private:
     vector<Layer> layers;
@@ -145,13 +149,16 @@ int main()
     cout << "ARTIFICIAL NERAL NETWORK" << endl
          << endl;
 
+    // Define number of decimal places for printing output
+    cout << fixed << setprecision(4);
+
     // Provide a seed for random number generation
     srand(static_cast<unsigned int>(clock()));
 
     // Create a vector to store a topology
     vector<unsigned> topology;
     topology.push_back(3);
-    topology.push_back(5);
+    topology.push_back(4);
     topology.push_back(2);
 
     // Instantiate a new neural network
@@ -159,6 +166,10 @@ int main()
 
     // Print neural network contents
     ann.print();
+
+    // Train neural network
+    vector<double> inputVals;
+    ann.train(inputVals);
 
     return 0;
 }
