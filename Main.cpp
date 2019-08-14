@@ -1,32 +1,61 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-
+#include <cassert>
 using namespace std;
 
 // TODO Separate classes into individual files
 
+/**
+ * @brief Connections link neurons and define how strongly linked neurons 
+ * are according to a weight value
+ * 
+ */
 class Connection
 {
-
 public:
+    /**
+     * @brief Construct a new Connection object
+     * 
+     */
     Connection()
     {
         weight = (double)rand() / RAND_MAX * 2.0 - 1.0;
     }
+
+    // The weight of a connection between neurons
     double weight;
+
+    // The change in the weight between epochs
     double deltaWeight;
 
+    /**
+     * @brief Prints the weight of a Connection
+     * 
+     * @param connectionIndex 
+     */
     void print(unsigned connectionIndex)
     {
         cout << "(" << (weight < 0 ? " " : "") << weight << ")";
     }
 };
 
+/**
+ * @brief Neurons are the building blocks of an Artificial Neural Network and 
+ * drive the input to specific output nodes according to the values of connection
+ * weights between neurons
+ * 
+ */
 class Neuron
 {
-
 public:
+    /**
+     * @brief Construct a new Neuron object
+     * 
+     * @param numberOfOutputConnections The number of the connections in the 
+     * following layer. Since the final layer contains the output nodes to the 
+     * Artificial Neural Network, they will not contain output connections
+     */
     Neuron(unsigned numberOfOutputConnections)
     {
         // Create connections for each neuron
@@ -40,13 +69,16 @@ public:
         }
     }
 
+    /**
+     * @brief Prints all of the Connections of a Neuron
+     * 
+     * @param neuronIndex 
+     */
     void print(unsigned neuronIndex)
     {
-        // Create layer nodes based on the number of neurons specified
         cout << "\tNeuron " << neuronIndex + 1 << " ";
         for (unsigned connectionIndex = 0; connectionIndex < connections.size(); ++connectionIndex)
         {
-
             connections[connectionIndex].print(connectionIndex);
         }
         cout << endl;
@@ -56,18 +88,34 @@ private:
     vector<Connection> connections;
 };
 
+/**
+ * @brief Layers contains rows of neurons. The first layer (the input layer) 
+ * serves as input to the Artificial Neural Network. Internal layers (hidden
+ * layers) form linkages between nodes. The last layer (output layer) contains
+ * output to the Neural Network. Commonly, the number of output nodes 
+ * corresponds to the number of class labels in the classification problem.
+ * 
+ */
 class Layer
 {
 public:
     unsigned layerIndex;
     vector<Neuron> neurons;
 
+    /**
+     * @brief Construct a new Layer object
+     * 
+     * @param numberOfNeurons The number of Neurons the layer will contain
+     * @param index The index of the layer being created
+     * @param numberOfOutputs The number of output Connections that the Neurons
+     * in the Layer will contain
+     */
     Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     {
         // Assign layer index
         layerIndex = index;
 
-        // Create layer nodes based on the number of neurons specified
+        // Populate the Layer with Neurons based on the numberOfNeurons parameter
         for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
         {
             cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
@@ -75,6 +123,10 @@ public:
         }
     }
 
+    /**
+     * @brief Prints all of the Neurons of a Layer
+     * 
+     */
     void print()
     {
         for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
@@ -87,10 +139,14 @@ public:
 class ArtificialNeuralNetwork
 {
 public:
+    /**
+     * @brief Construct a new Artificial Neural Network object
+     * 
+     * @param topology The topology (number of nodes in each layer) of the neural network
+     */
     ArtificialNeuralNetwork(const vector<unsigned> &topology)
     {
-
-        // Print network topology
+        // Print the topology of the Artificial Neural Network
         cout << "Creating a neural network with a ";
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
@@ -120,6 +176,10 @@ public:
         }
     };
 
+    /**
+     * @brief Prints all of the layers of an Artificial Neural Network
+     * 
+     */
     void print()
     {
         cout << endl
@@ -135,7 +195,14 @@ public:
         cout << endl;
     };
 
-    void train(vector<double> &inputVals)
+    /**
+     * @brief Trains an Artificial Neural Network
+     * 
+     * @param inputVals The input values to the neural network. 
+     *  The number of rows in the input value vector must equal
+     *  the number of input nodes in the neural network. 
+     */
+    void train(const vector<double> inputVals)
     {
         cout << "Training Neural Network" << endl;
     };
@@ -161,14 +228,19 @@ int main()
     topology.push_back(4);
     topology.push_back(2);
 
-    // Instantiate a new neural network
+    // Instantiate a new artificial neural network object
     ArtificialNeuralNetwork ann(topology);
 
     // Print neural network contents
     ann.print();
 
-    // Train neural network
+    // Define input to the artificial neural network
     vector<double> inputVals;
+    inputVals.push_back(2.24);
+    inputVals.push_back(6.41);
+    inputVals.push_back(7.48);
+
+    // Train the neural network
     ann.train(inputVals);
 
     return 0;
