@@ -34,7 +34,7 @@ public:
      * 
      * @param connectionIndex 
      */
-    void print(unsigned connectionIndex)
+    void print()
     {
         cout << "(" << (weight < 0 ? " " : "") << weight << ")";
     }
@@ -77,9 +77,9 @@ public:
     void print(unsigned neuronIndex)
     {
         cout << "\tNeuron " << neuronIndex + 1 << " ";
-        for (unsigned connectionIndex = 0; connectionIndex < connections.size(); ++connectionIndex)
+        for (auto connection : connections)
         {
-            connections[connectionIndex].print(connectionIndex);
+            connection.print();
         }
         cout << endl;
     }
