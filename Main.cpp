@@ -129,9 +129,10 @@ public:
      */
     void print()
     {
-        for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
+        unsigned neuronIndex = 0;
+        for (auto neuron : neurons)
         {
-            neurons[neuronIndex].print(neuronIndex);
+            neuron.print(neuronIndex++);
         }
     }
 };
