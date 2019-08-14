@@ -235,10 +235,7 @@ int main()
     ann.print();
 
     // Define input to the artificial neural network
-    vector<double> inputVals;
-    inputVals.push_back(2.24);
-    inputVals.push_back(6.41);
-    inputVals.push_back(7.48);
+    vector<double> inputVals = {2.24, 6, 41, 7.48};
 
     // Train the neural network
     ann.train(inputVals);
