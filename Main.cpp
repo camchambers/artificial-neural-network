@@ -1,7 +1,6 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
-#include <cassert>
 using namespace std;
 
 // TODO Separate classes into individual files
@@ -122,7 +121,6 @@ public:
             cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
             neurons.push_back(Neuron(numberOfOutputs));
         }
-
     }
 
     /**
@@ -168,6 +166,7 @@ public:
         for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
         {
             unsigned layerSize = topology[layerIndex];
+
             cout << endl
                  << "Adding a " << layerSize << " node layer to the neural network."
                  << endl;
@@ -209,6 +208,15 @@ public:
     void train(const vector<double> inputVals)
     {
         cout << "Training Neural Network" << endl;
+
+        // Validate that the rows of the input vector to the Neural Network matches
+        // the number of input nodes
+        if (layers.size() != inputVals.size())
+        {
+            cout << endl << "Error: The number of input values does not match the number of input nodes in the Neural Network." << endl << endl;
+            exit(1);
+        }
+
     };
 
 private:
