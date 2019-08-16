@@ -124,6 +124,14 @@ public:
     }
 
     /**
+     * @brief Prints the number of neurons in the layer
+     * 
+     */
+    int NeuronCount(){
+        return neurons.size();
+    }
+
+    /**
      * @brief Prints all of the Neurons of a Layer
      * 
      */
@@ -216,7 +224,7 @@ public:
             cout << endl << "Error: The number of input values does not match the number of input nodes in the Neural Network." << endl << endl;
             exit(1);
         }
-
+        
     };
 
 private:
