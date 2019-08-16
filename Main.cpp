@@ -127,7 +127,7 @@ public:
      * @brief Prints the number of neurons in the layer
      * 
      */
-    int NeuronCount(){
+    unsigned neuronCount(){
         return neurons.size();
     }
 
@@ -217,14 +217,15 @@ public:
     {
         cout << "Training Neural Network" << endl;
 
+        unsigned inputLayerSize = layers[0].neuronCount();
+
         // Validate that the rows of the input vector to the Neural Network matches
-        // the number of input nodes
-        if (layers.size() != inputVals.size())
+        // the number of Neurons in the first layer (input Neurons) of the Neural Network
+        if (inputVals.size() != inputLayerSize)
         {
             cout << endl << "Error: The number of input values does not match the number of input nodes in the Neural Network." << endl << endl;
             exit(1);
         }
-        
     };
 
 private:
