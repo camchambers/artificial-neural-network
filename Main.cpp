@@ -122,6 +122,7 @@ public:
             cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
             neurons.push_back(Neuron(numberOfOutputs));
         }
+
     }
 
     /**
@@ -171,7 +172,8 @@ public:
                  << "Adding a " << layerSize << " node layer to the neural network."
                  << endl;
 
-            // Need to pass in  the number of connections in the net layer
+            // Pass in the number of connections for all Neurons in the layer to be constructed
+            // The last layer will not contain any connections, since it is an output layer
             numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
 
             layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
