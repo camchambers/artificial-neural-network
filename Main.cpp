@@ -35,7 +35,7 @@ public:
      */
     void print()
     {
-        cout << "(" << (weight < 0 ? " " : "") << weight << ")";
+        cout << weight;
     }
 };
 
@@ -86,8 +86,10 @@ public:
     {
         cout << "\tNeuron " << neuronIndex + 1 << " ";
         for (auto connection : connections)
-        {
+        {   
+            cout << "(" << outputValue << ",";
             connection.print();
+            cout << ")";
         }
         cout << endl;
     }
