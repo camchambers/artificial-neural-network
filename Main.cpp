@@ -274,6 +274,9 @@ int main()
     // Train the neural network
     ann.train(inputVals);
 
+    // Re-print the neural network after input values have been updated
+    ann.print();
+
     // Wait for user input before terminating
     cout << "Press any key to continue...";
     cin.get();
