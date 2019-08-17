@@ -69,6 +69,15 @@ public:
     }
 
     /**
+     * @brief Sets the output value of the current Neuron
+     * 
+     * @param value The output value to set for the current neuron
+     */
+    void setOutputValue(double value){
+        outputValue = value;
+    }
+
+    /**
      * @brief Prints all of the Connections of a Neuron
      * 
      * @param neuronIndex 
