@@ -238,7 +238,7 @@ int main()
          << endl;
 
     // Define number of decimal places for printing output
-    cout << fixed << setprecision(4);
+    cout << fixed << setprecision(2);
 
     // Provide a seed for random number generation
     srand(static_cast<unsigned int>(clock()));
