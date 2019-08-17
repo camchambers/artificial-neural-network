@@ -41,7 +41,7 @@ public:
 
 /**
  * @brief Neurons are the building blocks of an Artificial Neural Network and 
- * drive the input to specific output nodes according to the values of connection
+ * drive the input to specific output Neurons according to the values of connection
  * weights between neurons
  * 
  */
@@ -52,7 +52,7 @@ public:
      * @brief Construct a new Neuron object
      * 
      * @param numberOfOutputConnections The number of the connections in the 
-     * following layer. Since the final layer contains the output nodes to the 
+     * following layer. Since the final layer contains the output Neurons to the 
      * Artificial Neural Network, they will not contain output connections
      */
     Neuron(unsigned numberOfOutputConnections)
@@ -102,8 +102,8 @@ private:
 /**
  * @brief Layers contains rows of neurons. The first layer (the input layer) 
  * serves as input to the Artificial Neural Network. Internal layers (hidden
- * layers) form linkages between nodes. The last layer (output layer) contains
- * output to the Neural Network. Commonly, the number of output nodes 
+ * layers) form linkages between neurons. The last layer (output layer) contains
+ * output to the Neural Network. Commonly, the number of output Neurons 
  * corresponds to the number of class labels in the classification problem.
  * 
  */
@@ -129,7 +129,7 @@ public:
         // Populate the Layer with Neurons based on the numberOfNeurons parameter
         for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
         {
-            cout << "Adding node " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
+            cout << "Adding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
             neurons.push_back(Neuron(numberOfOutputs));
         }
     }
@@ -162,7 +162,7 @@ public:
     /**
      * @brief Construct a new Artificial Neural Network object
      * 
-     * @param topology The topology (number of nodes in each layer) of the neural network
+     * @param topology The topology (number of Neurons in each layer) of the neural network
      */
     ArtificialNeuralNetwork(const vector<unsigned> &topology)
     {
@@ -187,7 +187,7 @@ public:
             unsigned layerSize = topology[layerIndex];
 
             cout << endl
-                 << "Adding a " << layerSize << " node layer to the neural network."
+                 << "Adding a " << layerSize << " neuron layer to the neural network."
                  << endl;
 
             // Pass in the number of connections for all Neurons in the layer to be constructed
@@ -222,7 +222,7 @@ public:
      * 
      * @param inputVals The input values to the neural network. 
      *  The number of rows in the input value vector must equal
-     *  the number of input nodes in the neural network. 
+     *  the number of input Neuron in the neural network. 
      */
     void train(const vector<double> inputVals)
     {
@@ -234,7 +234,7 @@ public:
         // the number of Neurons in the first layer (input Neurons) of the Neural Network
         if (inputVals.size() != inputLayerSize)
         {
-            cout << endl << "Error: The number of input values does not match the number of input nodes in the Neural Network." << endl << endl;
+            cout << endl << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl << endl;
             exit(1);
         }
 
