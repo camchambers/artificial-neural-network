@@ -237,6 +237,11 @@ public:
             cout << endl << "Error: The number of input values does not match the number of input nodes in the Neural Network." << endl << endl;
             exit(1);
         }
+
+        // Assign (latch) input values to the Neurons of the input Layer
+        for (unsigned i = 0; i < inputLayerSize;i++){
+            layers[0].neurons[i].setOutputValue(inputVals[i]);
+        }
     };
 
 private:
