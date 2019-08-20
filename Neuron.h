@@ -29,6 +29,8 @@ public:
      */
     void setOutputValue(double value);
 
+    void feedForward();
+
     /**
      * @brief Prints all of the Connections of a Neuron
      * 

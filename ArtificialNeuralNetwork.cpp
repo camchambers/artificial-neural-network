@@ -77,12 +77,10 @@ void ArtificialNeuralNetwork::train(const vector<double> inputVals)
     // have already been set
     for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
     {
-        cout << endl
-             << "Layer " << layerIndex << endl;
+        Layer &previousLayer = layers[layerIndex - 1];
         for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
         {
-            cout << endl
-                 << "\tNeuron " << neuronIndex << endl;
+            layers[layerIndex].neurons[neuronIndex].feedForward();
         }
     }
 };

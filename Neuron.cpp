@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Neuron.h"
+#include "Layer.h"
 
 Neuron::Neuron(unsigned numberOfOutputConnections)
 {
@@ -17,6 +17,10 @@ Neuron::Neuron(unsigned numberOfOutputConnections)
 void Neuron::setOutputValue(double value)
 {
     outputValue = value;
+}
+
+void Neuron::feedForward()
+{
 }
 
 void Neuron::print(unsigned neuronIndex)
