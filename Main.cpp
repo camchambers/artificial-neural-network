@@ -2,269 +2,163 @@
 #include <iomanip>
 #include <vector>
 using namespace std;
+#include "Connection.h"
+#include "Neuron.h"
+#include "Layer.h"
+#include "ArtificialNeuralNetwork.h"
 
 // TODO Separate classes into individual files
 
-/**
- * @brief Connections link neurons and define how strongly linked neurons 
- * are according to a weight value
- * 
- */
-class Connection
+Connection::Connection()
 {
-public:
-    /**
-     * @brief Construct a new Connection object
-     * 
-     */
-    Connection()
-    {
-        weight = (double)rand() / RAND_MAX * 2.0 - 1.0;
-    }
+    weight = (double)rand() / RAND_MAX * 2.0 - 1.0;
+}
 
-    // The weight of a connection between neurons
-    double weight;
-
-    // The change in the weight between epochs
-    double deltaWeight;
-
-    /**
-     * @brief Prints the weight of a Connection
-     * 
-     * @param connectionIndex 
-     */
-    void print()
-    {
-        cout << weight;
-    }
-};
-
-/**
- * @brief Neurons are the building blocks of an Artificial Neural Network and 
- * drive the input to specific output Neurons according to the values of connection
- * weights between neurons
- * 
- */
-class Neuron
+void Connection::print()
 {
-public:
-    /**
-     * @brief Construct a new Neuron object
-     * 
-     * @param numberOfOutputConnections The number of the connections in the 
-     * following layer. Since the final layer contains the output Neurons to the 
-     * Artificial Neural Network, they will not contain output connections
-     */
-    Neuron(unsigned numberOfOutputConnections)
-    {
-        // Create connections for each neuron
-        if (numberOfOutputConnections > 0)
-        {
-            for (unsigned connectionIndex = 0; connectionIndex < numberOfOutputConnections; ++connectionIndex)
-            {
-                cout << "Adding connection " << (connectionIndex + 1) << " with " << numberOfOutputConnections << " outputs" << endl;
-                connections.push_back(Connection());
-            }
-        }
-    }
+    cout << weight;
+}
 
-    /**
-     * @brief Sets the output value of the current Neuron
-     * 
-     * @param value The output value to set for the current neuron
-     */
-    void setOutputValue(double value)
-    {
-        outputValue = value;
-    }
-
-    /**
-     * @brief Prints all of the Connections of a Neuron
-     * 
-     * @param neuronIndex 
-     */
-    void print(unsigned neuronIndex)
-    {
-        cout << "\tNeuron " << neuronIndex + 1 << " ";
-        for (auto connection : connections)
-        {
-            cout << "(" << outputValue << ",";
-            connection.print();
-            cout << ")";
-        }
-        cout << endl;
-    }
-
-private:
-    vector<Connection> connections;
-    double outputValue = 0;
-};
-
-/**
- * @brief Layers contains rows of neurons. The first layer (the input layer) 
- * serves as input to the Artificial Neural Network. Internal layers (hidden
- * layers) form linkages between neurons. The last layer (output layer) contains
- * output to the Neural Network. Commonly, the number of output Neurons 
- * corresponds to the number of class labels in the classification problem.
- * 
- */
-class Layer
+Neuron::Neuron(unsigned numberOfOutputConnections)
 {
-public:
-    unsigned layerIndex;
-    vector<Neuron> neurons;
-
-    /**
-     * @brief Construct a new Layer object
-     * 
-     * @param numberOfNeurons The number of Neurons the layer will contain
-     * @param index The index of the layer being created
-     * @param numberOfOutputs The number of output Connections that the Neurons
-     * in the Layer will contain
-     */
-    Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
+    // Create connections for each neuron
+    if (numberOfOutputConnections > 0)
     {
-        // Assign layer index
-        layerIndex = index;
-
-        // Populate the Layer with Neurons based on the numberOfNeurons parameter
-        for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
+        for (unsigned connectionIndex = 0; connectionIndex < numberOfOutputConnections; ++connectionIndex)
         {
-            cout << "Adding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
-            neurons.push_back(Neuron(numberOfOutputs));
+            cout << "Adding connection " << (connectionIndex + 1) << " with " << numberOfOutputConnections << " outputs" << endl;
+            connections.push_back(Connection());
         }
     }
+}
 
-    /**
-     * @brief Prints the number of neurons in the layer
-     * 
-     */
-    unsigned neuronCount()
-    {
-        return neurons.size();
-    }
-
-    /**
-     * @brief Prints all of the Neurons of a Layer
-     * 
-     */
-    void print()
-    {
-        unsigned neuronIndex = 0;
-        for (auto neuron : neurons)
-        {
-            neuron.print(neuronIndex++);
-        }
-    }
-};
-
-class ArtificialNeuralNetwork
+void Neuron::setOutputValue(double value)
 {
-public:
-    /**
-     * @brief Construct a new Artificial Neural Network object
-     * 
-     * @param topology The topology (number of Neurons in each layer) of the neural network
-     */
-    ArtificialNeuralNetwork(const vector<unsigned> &topology)
+    outputValue = value;
+}
+
+void Neuron::print(unsigned neuronIndex)
+{
+    cout << "\tNeuron " << neuronIndex + 1 << " ";
+    for (auto connection : connections)
     {
-        // Print the topology of the Artificial Neural Network
-        cout << "Creating a neural network with a ";
-        for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
-        {
-            cout << topology[layerIndex];
-            if (layerIndex < (topology.size() - 1))
-            {
-                cout << ":";
-            }
-        }
-        cout << " toplogy." << endl;
+        cout << "(" << outputValue << ",";
+        connection.print();
+        cout << ")";
+    }
+    cout << endl;
+}
 
-        // Number of connections to the next layer
-        unsigned int numberOfOutputs = 0;
+Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
+{
+    // Assign layer index
+    layerIndex = index;
 
-        // Create neural network layers
-        for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
-        {
-            unsigned layerSize = topology[layerIndex];
-
-            cout << endl
-                 << "Adding a " << layerSize << " neuron layer to the neural network."
-                 << endl;
-
-            // Pass in the number of connections for all Neurons in the layer to be constructed
-            // The last layer will not contain any connections, since it is an output layer
-            numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
-
-            layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
-        }
-    };
-
-    /**
-     * @brief Prints all of the layers of an Artificial Neural Network
-     * 
-     */
-    void print()
+    // Populate the Layer with Neurons based on the numberOfNeurons parameter
+    for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
     {
+        cout << "Adding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
+        neurons.push_back(Neuron(numberOfOutputs));
+    }
+}
+
+unsigned Layer::neuronCount()
+{
+    return neurons.size();
+}
+
+void Layer::print()
+{
+    for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
+    {
+        neurons[neuronIndex].print(neuronIndex++);
+    }
+}
+
+ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topology)
+{
+    // Print the topology of the Artificial Neural Network
+    cout << "Creating a neural network with a ";
+    for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
+    {
+        cout << topology[layerIndex];
+        if (layerIndex < (topology.size() - 1))
+        {
+            cout << ":";
+        }
+    }
+    cout << " toplogy." << endl;
+
+    // Number of connections to the next layer
+    unsigned int numberOfOutputs = 0;
+
+    // Create neural network layers
+    for (unsigned layerIndex = 0; layerIndex < topology.size(); ++layerIndex)
+    {
+        unsigned layerSize = topology[layerIndex];
+
         cout << endl
-             << "Printing neural network:" << endl
+             << "Adding a " << layerSize << " neuron layer to the neural network."
              << endl;
 
-        for (unsigned layerIndex = 0; layerIndex < layers.size(); ++layerIndex)
-        {
-            cout << "Layer " << (layerIndex + 1) << endl;
-            layers[layerIndex].print();
-            cout << endl;
-        }
-        cout << endl;
-    };
+        // Pass in the number of connections for all Neurons in the layer to be constructed
+        // The last layer will not contain any connections, since it is an output layer
+        numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
 
-    /**
-     * @brief Trains an Artificial Neural Network
-     * 
-     * @param inputVals The input values to the neural network. 
-     *  The number of rows in the input value vector must equal
-     *  the number of input Neuron in the neural network. 
-     */
-    void train(const vector<double> inputVals)
+        layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
+    }
+};
+
+void ArtificialNeuralNetwork::print()
+{
+    cout << endl
+         << "Printing neural network:" << endl
+         << endl;
+
+    for (unsigned layerIndex = 0; layerIndex < layers.size(); ++layerIndex)
     {
-        cout << "Training Neural Network" << endl;
+        cout << "Layer " << (layerIndex + 1) << endl;
+        layers[layerIndex].print();
+        cout << endl;
+    }
+    cout << endl;
+};
 
-        unsigned inputLayerSize = layers[0].neuronCount();
+void ArtificialNeuralNetwork::train(const vector<double> inputVals)
+{
+    cout << "Training Neural Network" << endl;
 
-        // Validate that the rows of the input vector to the Neural Network matches
-        // the number of Neurons in the first layer (input Neurons) of the Neural Network
-        if (inputVals.size() != inputLayerSize)
+    unsigned inputLayerSize = layers[0].neuronCount();
+
+    // Validate that the rows of the input vector to the Neural Network matches
+    // the number of Neurons in the first layer (input Neurons) of the Neural Network
+    if (inputVals.size() != inputLayerSize)
+    {
+        cout << endl
+             << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
+             << endl;
+        exit(1);
+    }
+
+    // Assign (latch) input values to the Neurons of the input Layer
+    for (unsigned i = 0; i < inputLayerSize; i++)
+    {
+        layers[0].neurons[i].setOutputValue(inputVals[i]);
+    }
+
+    // Forward propogate input values
+    // Skip the input layer because the output values for the input layer
+    // have already been set
+    for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
+    {
+        cout << endl
+             << "Layer " << layerIndex << endl;
+        for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
         {
             cout << endl
-                 << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
-                 << endl;
-            exit(1);
+                 << "\tNeuron " << neuronIndex << endl;
         }
-
-        // Assign (latch) input values to the Neurons of the input Layer
-        for (unsigned i = 0; i < inputLayerSize; i++)
-        {
-            layers[0].neurons[i].setOutputValue(inputVals[i]);
-        }
-
-        // Forward propogate input values
-        // Skip the input layer because the output values for the input layer
-        // have already been set
-        for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
-        {
-            cout << endl
-                 << "Layer " << layerIndex << endl;
-            for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
-            {
-                cout << endl
-                     << "\tNeuron " << neuronIndex << endl;
-            }
-        }
-    };
-
-private:
-    vector<Layer> layers;
+    }
 };
 
 int main()
