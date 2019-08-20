@@ -6,7 +6,7 @@
             "command": "clang++",
             "args": [
                 "-o",
-                "main", // executable name
+                "ann", // executable name
                 "Main.cpp", // include cpp files
                 "Connection.cpp",
                 "Neuron.cpp",
