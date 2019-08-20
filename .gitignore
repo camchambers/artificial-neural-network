@@ -2,3 +2,5 @@
 !*.h
 !*.cpp
 !*.gitignore
+!*.vscode/*
+!*.vscode
