@@ -1,6 +1,8 @@
-using namespace std;
 #include <iostream>
+#include "Neuron.h"
 #include "Layer.h"
+
+using namespace std;
 
 Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
 {
@@ -24,6 +26,6 @@ void Layer::print()
 {
     for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
     {
-        neurons[neuronIndex].print(neuronIndex++);
+        neurons[neuronIndex].print(neuronIndex);
     }
 }

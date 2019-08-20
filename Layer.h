@@ -1,8 +1,6 @@
-using namespace std;
-
-#include <vector>
-#include "Connection.h"
 #include "Neuron.h"
+
+using namespace std;
 
 #pragma once
 

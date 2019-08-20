@@ -1,11 +1,8 @@
-using namespace std;
 #include <iostream>
 #include <iomanip>
-#include <vector>
-#include "Connection.h"
-#include "Neuron.h"
-#include "Layer.h"
 #include "ArtificialNeuralNetwork.h"
+
+using namespace std;
 
 int main()
 {
