@@ -6,7 +6,7 @@
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/Main",
+            "program": "${workspaceRoot}/ann",
             "preLaunchTask": "build",
             "internalConsoleOptions": "openOnSessionStart",
             "logging": {
