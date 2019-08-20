@@ -73,7 +73,8 @@ public:
      * 
      * @param value The output value to set for the current neuron
      */
-    void setOutputValue(double value){
+    void setOutputValue(double value)
+    {
         outputValue = value;
     }
 
@@ -86,7 +87,7 @@ public:
     {
         cout << "\tNeuron " << neuronIndex + 1 << " ";
         for (auto connection : connections)
-        {   
+        {
             cout << "(" << outputValue << ",";
             connection.print();
             cout << ")";
@@ -138,7 +139,8 @@ public:
      * @brief Prints the number of neurons in the layer
      * 
      */
-    unsigned neuronCount(){
+    unsigned neuronCount()
+    {
         return neurons.size();
     }
 
@@ -234,13 +236,30 @@ public:
         // the number of Neurons in the first layer (input Neurons) of the Neural Network
         if (inputVals.size() != inputLayerSize)
         {
-            cout << endl << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl << endl;
+            cout << endl
+                 << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
+                 << endl;
             exit(1);
         }
 
         // Assign (latch) input values to the Neurons of the input Layer
-        for (unsigned i = 0; i < inputLayerSize;i++){
+        for (unsigned i = 0; i < inputLayerSize; i++)
+        {
             layers[0].neurons[i].setOutputValue(inputVals[i]);
+        }
+
+        // Forward propogate input values
+        // Skip the input layer because the output values for the input layer
+        // have already been set
+        for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
+        {
+            cout << endl
+                 << "Layer " << layerIndex << endl;
+            for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
+            {
+                cout << endl
+                     << "\tNeuron " << neuronIndex << endl;
+            }
         }
     };
 
