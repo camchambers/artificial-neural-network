@@ -1,9 +1,8 @@
-using namespace std;
-
+#pragma once
 #include <vector>
 #include "Connection.h"
 
-#pragma once
+using namespace std;
 
 /**
  * @brief Neurons are the building blocks of an Artificial Neural Network and 

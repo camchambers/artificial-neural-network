@@ -1,9 +1,9 @@
-using namespace std;
+#pragma once
 
 #include <vector>
 #include "Layer.h"
 
-#pragma once
+using namespace std;
 
 class ArtificialNeuralNetwork
 {

@@ -1,8 +1,7 @@
+#pragma once
 #include "Neuron.h"
 
 using namespace std;
-
-#pragma once
 
 class Layer
 {
