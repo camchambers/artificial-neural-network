@@ -22,7 +22,7 @@ public:
      * following layer. Since the final layer contains the output Neurons to the 
      * Artificial Neural Network, they will not contain output connections
      */
-    Neuron(unsigned numberOfOutputConnections);
+    Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections);
 
     /**
      * @brief Sets the output value of the current Neuron
@@ -31,6 +31,12 @@ public:
      */
     void setOutputValue(double value);
 
+    /**
+     * @brief Gets the output value of the current Neuron
+     * 
+     */
+    double getOutputValue();
+
     void feedForward(Layer &previousLayer);
 
     /**
@@ -38,9 +44,10 @@ public:
      * 
      * @param neuronIndex 
      */
-    void print(unsigned neuronIndex);
+    void print();
 
 private:
     vector<Connection> connections;
+    unsigned neuronIndex = 0;
     double outputValue = 0;
 };
