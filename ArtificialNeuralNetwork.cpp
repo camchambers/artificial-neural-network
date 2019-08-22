@@ -1,7 +1,6 @@
 #include <iostream>
 #include "ArtificialNeuralNetwork.h"
 
-
 ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topology)
 {
     // Print the topology of the Artificial Neural Network

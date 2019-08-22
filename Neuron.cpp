@@ -1,8 +1,6 @@
 #include <iostream>
 #include "Neuron.h"
 
-
-
 Neuron::Neuron(unsigned numberOfOutputConnections)
 {
     // Create connections for each neuron

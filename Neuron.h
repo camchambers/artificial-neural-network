@@ -6,7 +6,6 @@ using namespace std;
 
 class Layer;
 
-
 /**
  * @brief Neurons are the building blocks of an Artificial Neural Network and 
  * drive the input to specific output Neurons according to the values of connection
