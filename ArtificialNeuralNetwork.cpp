@@ -24,7 +24,8 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
         unsigned layerSize = topology[layerIndex];
 
         cout << endl
-             << "Adding a " << layerSize << " neuron layer to the neural network." << endl;
+             << "Adding a " << layerSize << " neuron layer to the neural network." << endl
+             << endl;
 
         // Pass in the number of connections for all Neurons in the layer to be constructed
         // The last layer will not contain any connections, since it is an output layer
@@ -37,6 +38,7 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
 void ArtificialNeuralNetwork::print()
 {
     cout << endl
+         << endl
          << "Printing neural network:" << endl
          << endl;
 
