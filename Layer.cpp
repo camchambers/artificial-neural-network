@@ -29,3 +29,10 @@ void Layer::print()
         neurons[neuronIndex].print(neuronIndex);
     }
 }
+
+// Forward definition for Neuron feed forward
+void Neuron::feedForward(Layer &previousLayer)
+{
+    // testing
+    cout << endl << "Feeding forward neuron in layer " << previousLayer.layerIndex << endl;
+}
