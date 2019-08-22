@@ -4,6 +4,9 @@
 
 using namespace std;
 
+class Layer;
+
+
 /**
  * @brief Neurons are the building blocks of an Artificial Neural Network and 
  * drive the input to specific output Neurons according to the values of connection
@@ -29,7 +32,7 @@ public:
      */
     void setOutputValue(double value);
 
-    void feedForward();
+    void feedForward(Layer &previousLayer);
 
     /**
      * @brief Prints all of the Connections of a Neuron
