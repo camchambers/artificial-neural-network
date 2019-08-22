@@ -1,6 +1,7 @@
 #include <iostream>
 #include "ArtificialNeuralNetwork.h"
 
+
 ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topology)
 {
     // Print the topology of the Artificial Neural Network
@@ -80,7 +81,8 @@ void ArtificialNeuralNetwork::train(const vector<double> inputVals)
         Layer &previousLayer = layers[layerIndex - 1];
         for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
         {
-            layers[layerIndex].neurons[neuronIndex].feedForward();
+            layers[layerIndex].neurons[neuronIndex].feedForward(previousLayer);
         }
     }
 };
+
