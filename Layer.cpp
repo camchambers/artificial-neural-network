@@ -33,7 +33,6 @@ void Layer::print()
 // Forward definition for Neuron feed forward
 void Neuron::feedForward(Layer &previousLayer)
 {
-
     // Display which neuron in which layer is feeding forward
     cout << "\tLayer " << previousLayer.layerIndex + 2 << ", Neuron " << this->neuronIndex + 1 << " is feeding forward." << endl;
 
@@ -45,6 +44,4 @@ void Neuron::feedForward(Layer &previousLayer)
     {
         sum = sum + previousLayer.neurons[neuronIndex].getOutputValue() * previousLayer.neurons[neuronIndex].connections[this->neuronIndex].weight;
     }
-
-
 }

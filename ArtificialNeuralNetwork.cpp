@@ -53,7 +53,7 @@ void ArtificialNeuralNetwork::print()
 
 void ArtificialNeuralNetwork::train(const vector<double> inputVals)
 {
-    cout << "Training Neural Network" << endl;
+    cout << "Training Neural Network" << endl << endl;
 
     unsigned inputLayerSize = layers[0].neuronCount();
 
