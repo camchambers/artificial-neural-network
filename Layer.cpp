@@ -13,7 +13,7 @@ Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
     {
         cout << "Adding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
-        neurons.push_back(Neuron(numberOfOutputs));
+        neurons.push_back(Neuron(neuronIndex, numberOfOutputs));
     }
 }
 
@@ -26,13 +26,23 @@ void Layer::print()
 {
     for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
     {
-        neurons[neuronIndex].print(neuronIndex);
+        neurons[neuronIndex].print();
     }
 }
 
 // Forward definition for Neuron feed forward
 void Neuron::feedForward(Layer &previousLayer)
 {
-    // testing
-    cout << endl << "Feeding forward neuron in layer " << previousLayer.layerIndex << endl;
+
+    // The sum of the inputs
+    double sum = 0.0;
+
+    // Loop through all of the neurons in the previous layer
+    for (unsigned neuronIndex = 0; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
+    {
+        sum = sum + previousLayer.neurons[neuronIndex].getOutputValue();
+    }
+
+    cout << endl
+         << "    Layer " << previousLayer.layerIndex + 2 << ", Neuron " << neuronIndex + 1 << " is feeding forward." << endl;
 }
