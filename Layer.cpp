@@ -34,15 +34,17 @@ void Layer::print()
 void Neuron::feedForward(Layer &previousLayer)
 {
 
+    // Display which neuron in which layer is feeding forward
+    cout << "\tLayer " << previousLayer.layerIndex + 2 << ", Neuron " << this->neuronIndex + 1 << " is feeding forward." << endl;
+
     // The sum of the inputs
     double sum = 0.0;
 
     // Loop through all of the neurons in the previous layer
     for (unsigned neuronIndex = 0; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
     {
-        sum = sum + previousLayer.neurons[neuronIndex].getOutputValue();
+        sum = sum + previousLayer.neurons[neuronIndex].getOutputValue() * previousLayer.neurons[neuronIndex].connections[this->neuronIndex].weight;
     }
 
-    cout << endl
-         << "    Layer " << previousLayer.layerIndex + 2 << ", Neuron " << neuronIndex + 1 << " is feeding forward." << endl;
+
 }
