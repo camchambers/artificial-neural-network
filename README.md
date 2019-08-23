@@ -1,6 +1,20 @@
 # C++ Artificial Neural Network (ANN)
 
 > A simple object-oriented artificial neural network (ANN) built in C++
+
+### TO DO
+
+- [x] Write classes for neural network components
+- [x] Complete code for constructing network topology
+- [x] Seperate classes into discrete files
+- [ ] Add bias nodes automatically while constructing the network
+- [ ] Complete a functioning neural network
+- [ ] Add the ability to evaluate a test set 
+- [ ] Write a function for reading training data from a CSV
+- [ ] Write a function for reading test data from a CSV
+- [ ] Write a program to scale training and test data
+- [ ] Add the ability to support multiple activation functions
+
 ## Example (Optional)
 
 ```cpp
