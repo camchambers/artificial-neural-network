@@ -43,6 +43,11 @@ double Neuron::calculateHiddenGradients(Layer &nextLayer)
     return 0.0;
 }
 
+double Neuron::calculateOutputGradients(double targetValues)
+{
+    return 0.0;
+}
+
 void Neuron::print()
 {
     cout << "\tNeuron " << neuronIndex + 1 << " ";
