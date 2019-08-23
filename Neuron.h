@@ -58,14 +58,14 @@ public:
      * @param targetValues 
      * @return double 
      */
-    double calculateOutputGradients(double targetValue);
+    void calculateOutputGradients(double targetValue);
 
     /**
      * @brief Updates the input weights for the current neuron during backpropagation
      * 
      * @return double 
      */
-    double updateInputWeights(Layer &layer);
+    double updateInputWeights(Layer &previousLayer);
 
     /**
      * @brief Prints all of the Connections of a Neuron
@@ -79,6 +79,8 @@ private:
     unsigned neuronIndex = 0;
     double outputValue = 0.0;
     double gradient = 0.0;
+    static double learningRate;
+    static double momentumValue;
 
     /**
      * @brief Shapes the output of a Neuron by applying a mathematical formula
