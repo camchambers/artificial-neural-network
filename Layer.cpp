@@ -64,3 +64,18 @@ double Neuron::sumDerivativeOfWeights(Layer &nextLayer)
     return sum;
 }
 
+double Neuron::updateInputWeights(Layer &previousLayer)
+{
+    for (unsigned neuronIndex = 0; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
+    {
+        // A convienance variable to refer to the indexed neuron in the previous layer
+        Neuron &neuron = previousLayer.neurons[neuronIndex];
+        double oldDeltaWeight = neuron.connections[this->neuronIndex].deltaWeight;
+
+        double newDeltaWeight = learningRate * neuron.outputValue * this->gradient + momentumValue * oldDeltaWeight;
+
+        neuron.connections[neuronIndex].deltaWeight = newDeltaWeight;
+        neuron.connections[neuronIndex].weight += newDeltaWeight;
+    }
+    return 0.0;
+}
