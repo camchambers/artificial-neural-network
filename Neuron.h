@@ -37,6 +37,11 @@ public:
      */
     double getOutputValue();
 
+    /**
+     * @brief Feeds forward outputs from the previous layer into the current neuron
+     * 
+     * @param previousLayer 
+     */
     void feedForward(Layer &previousLayer);
 
     /**
