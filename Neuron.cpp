@@ -33,6 +33,11 @@ double Neuron::activationFunction(double input)
     return tanh(input);
 }
 
+double Neuron::activationFunctionDerivative(double input)
+{
+    return 1.0 - input * input;
+}
+
 void Neuron::print()
 {
     cout << "\tNeuron " << neuronIndex + 1 << " ";
