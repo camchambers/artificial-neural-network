@@ -35,6 +35,10 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
     }
 };
 
+void ArtificialNeuralNetwork::backPropogate(const vector<double> targetValues)
+{
+}
+
 void ArtificialNeuralNetwork::print()
 {
     cout << endl
@@ -53,7 +57,8 @@ void ArtificialNeuralNetwork::print()
 
 void ArtificialNeuralNetwork::train(const vector<double> inputVals)
 {
-    cout << "Training Neural Network" << endl << endl;
+    cout << "Training Neural Network" << endl
+         << endl;
 
     unsigned inputLayerSize = layers[0].neuronCount();
 
