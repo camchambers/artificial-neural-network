@@ -29,7 +29,14 @@ public:
      *  The number of rows in the input value vector must equal
      *  the number of input Neuron in the neural network. 
      */
-    void train(const vector<double> inputVals);
+    void train(const vector<double> inputValues);
+
+    /**
+     * @brief Returns the neural network results
+     * 
+     * @param inputVals 
+     */
+    void getResults(vector<double> resultValues);
 
     /**
      * @brief Prints all of the layers of an Artificial Neural Network
