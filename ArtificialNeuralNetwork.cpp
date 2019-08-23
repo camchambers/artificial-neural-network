@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "ArtificialNeuralNetwork.h"
 
 ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topology)
@@ -44,27 +45,46 @@ void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
     this->error = 0.0;
 
     // TODO Set loop condition to layer size -1 when bias neurons are added
-    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.size(); ++neuronIndex)
+    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount(); ++neuronIndex)
     {
         // Determine the error for the current output node by taking the delta
         // (difference) between the output value and expected value
-        double delta = targetValues[neuronIndex] - outputLayer[neuronIndex].getOutputValue();
+        double delta = targetValues[neuronIndex] - outputLayer.neurons[neuronIndex].getOutputValue();
 
         // Accumulate the squared error for each of the output neurons
         this->error = this->error + delta * delta;
     }
 
     // Get the average of the squared error
-    this->error = this->error / outputLayer.size();
+    this->error = this->error / outputLayer.neuronCount();
 
     // Take the square root of the average squared error to get the RMS (the
     // back propagation function aims to minimize the RMS of the output Neurons)
     this->error = sqrt(this->error);
-    
-   
+
     // Calculate the output layer gradients
+    // TODO Change condition to outputLayer.size() -1 after adding bias neurons
+    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount(); ++neuronIndex)
+    {
+        outputLayer.neurons[neuronIndex].calculateOutputGradients(targetValues[neuronIndex]);
+    }
 
     // Calculate the gradients of the hidden layers
+    for (unsigned layerIndex = layers.size() - 2; layerIndex > 0; --layerIndex)
+    {
+        // A convienance variable for the current hidden layer
+        Layer &hiddenLayer = layers[layerIndex];
+
+        // A convienance variable for the next layer relative to the current one
+        Layer &nextLayer = layers[layerIndex + 1];
+
+        // Iterate through all of the neurons in the current hidden layer and
+        // tell each neuron to calculate their gradients
+        for (unsigned neuronIndex = 0; neuronIndex < hiddenLayer.neuronCount(); ++neuronIndex)
+        {
+            hiddenLayer.neurons[neuronIndex].calculateHiddenGradients(nextLayer);
+        }
+    }
 
     // Update connection weights for all layers, except for
     // the input layer
