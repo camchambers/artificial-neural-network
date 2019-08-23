@@ -55,4 +55,13 @@ private:
     vector<Connection> connections;
     unsigned neuronIndex = 0;
     double outputValue = 0;
+
+    /**
+     * @brief Shapes the output of a Neuron by applying a mathematical formula
+     * 
+     * @param input The input to the activation function
+     * @return double 
+     */
+    double activationFunction(double input);
+
 };
