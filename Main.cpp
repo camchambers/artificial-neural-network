@@ -39,6 +39,12 @@ int main()
     // Re-print the neural network after input values have been updated
     ann.print();
 
+    // Define a results vector
+    vector<double> resultValues;
+
+    // Get results
+    ann.getResults(resultValues);
+
     // Wait for user input before terminating
     cout << "Press any key to continue...";
     cin.get();
