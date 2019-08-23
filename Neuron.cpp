@@ -38,20 +38,25 @@ double Neuron::activationFunctionDerivative(double input)
     return 1.0 - input * input;
 }
 
-double Neuron::calculateHiddenGradients(Layer &nextLayer)
+void Neuron::calculateHiddenGradients(Layer &nextLayer)
 {
-    return 0.0;
+    // The error difference in this case is calculated by taking the sum of the
+    // derivatives of the weights of the next layer because we don't have a
+    // target value that we can compare with
+    // The equivalent of the error delta is the sum of the derivatives of the next layer
+    double sumDerivativeOfWeights = 0.0;
 }
 
-double Neuron::calculateOutputGradients(double targetValues)
+double Neuron::calculateOutputGradients(double targetValue)
 {
-    return 0.0;
+    // Compare the output value the neuron to the target value that it's supposed to have
+    double delta = targetValue - this->outputValue;
+
+    // Multiply the delta by the derivative of the neuron's output value
+    // causing the output of the neural network to reduce its overall error
+    this->gradient = Neuron::activationFunctionDerivative(outputValue);
 }
 
-double Neuron::updateInputWeights(Layer &layer)
-{
-    return 0.0;
-}
 
 void Neuron::print()
 {
