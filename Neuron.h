@@ -64,4 +64,9 @@ private:
      */
     double activationFunction(double input);
 
+    /**
+     * @brief Retruns an approximation of the derivative of the input
+     * 
+     */
+    double activationFunctionDerivative(double input);
 };
