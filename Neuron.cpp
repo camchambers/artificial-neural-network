@@ -47,7 +47,7 @@ void Neuron::calculateHiddenGradients(Layer &nextLayer)
     double sumDerivativeOfWeights = 0.0;
 }
 
-double Neuron::calculateOutputGradients(double targetValue)
+void Neuron::calculateOutputGradients(double targetValue)
 {
     // Compare the output value the neuron to the target value that it's supposed to have
     double delta = targetValue - this->outputValue;
@@ -57,6 +57,9 @@ double Neuron::calculateOutputGradients(double targetValue)
     this->gradient = Neuron::activationFunctionDerivative(outputValue);
 }
 
+double Neuron::learningRate = 0.15;
+
+double Neuron::momentumValue = 0.5;
 
 void Neuron::print()
 {
