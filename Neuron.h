@@ -53,6 +53,14 @@ public:
     double calculateHiddenGradients(Layer &nextLayer);
 
     /**
+     * @brief Calculates the gradients of output layer neurons during back propagation
+     * 
+     * @param targetValues 
+     * @return double 
+     */
+    double calculateOutputGradients(double targetValues);
+
+    /**
      * @brief Prints all of the Connections of a Neuron
      * 
      * @param neuronIndex 
