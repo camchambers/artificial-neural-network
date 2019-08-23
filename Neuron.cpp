@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include "Neuron.h"
 
 Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
@@ -25,6 +26,11 @@ double Neuron::getOutputValue()
 void Neuron::setOutputValue(double value)
 {
     outputValue = value;
+}
+
+double Neuron::activationFunction(double input)
+{
+    return tanh(input);
 }
 
 void Neuron::print()
