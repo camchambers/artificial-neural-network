@@ -1,3 +1,9 @@
+/**
+ * Artificial Neural Network 
+ * 
+ * An object-oriented implementation of an artificial neural network
+ */
+
 #include <iostream>
 #include <iomanip>
 #include "ArtificialNeuralNetwork.h"
