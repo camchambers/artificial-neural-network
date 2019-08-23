@@ -37,6 +37,17 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
 
 void ArtificialNeuralNetwork::backPropogate(const vector<double> targetValues)
 {
+    // Calculate the total net error of the network using
+    // the Root Mean Square (RMS) of the output Neurons
+    // The back propagation function aims to minimize the RMS of the 
+    // output Neurons
+
+    // Calculate the output layer gradients
+
+    // Calculate the gradients of the hidden layers
+
+    // Update connection weights for all layers, except for
+    // the input layer
 }
 
 void ArtificialNeuralNetwork::print()

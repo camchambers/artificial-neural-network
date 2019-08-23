@@ -20,7 +20,7 @@ public:
      * 
      * @param targetValues 
      */
-    void backPropogate(const vector<double> targetValues);
+    void backPropagate(const vector<double> targetValues);
 
     /**
      * @brief Trains an Artificial Neural Network
