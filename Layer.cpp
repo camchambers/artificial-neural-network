@@ -44,4 +44,8 @@ void Neuron::feedForward(Layer &previousLayer)
     {
         sum = sum + previousLayer.neurons[neuronIndex].getOutputValue() * previousLayer.neurons[neuronIndex].connections[this->neuronIndex].weight;
     }
+
+    outputValue = activationFunction(sum);
+
+    this->setOutputValue(outputValue);
 }
