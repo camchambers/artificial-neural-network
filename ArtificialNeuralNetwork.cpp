@@ -122,7 +122,7 @@ void ArtificialNeuralNetwork::print()
     cout << endl;
 };
 
-void ArtificialNeuralNetwork::train(const vector<double> inputVals)
+void ArtificialNeuralNetwork::train(const vector<double> inputValues)
 {
     cout << "Training Neural Network" << endl
          << endl;
@@ -131,7 +131,7 @@ void ArtificialNeuralNetwork::train(const vector<double> inputVals)
 
     // Validate that the rows of the input vector to the Neural Network matches
     // the number of Neurons in the first layer (input Neurons) of the Neural Network
-    if (inputVals.size() != inputLayerSize)
+    if (inputValues.size() != inputLayerSize)
     {
         cout << endl
              << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
@@ -142,7 +142,7 @@ void ArtificialNeuralNetwork::train(const vector<double> inputVals)
     // Assign (latch) input values to the Neurons of the input Layer
     for (unsigned i = 0; i < inputLayerSize; i++)
     {
-        layers[0].neurons[i].setOutputValue(inputVals[i]);
+        layers[0].neurons[i].setOutputValue(inputValues[i]);
     }
 
     // Forward propogate input values
@@ -157,3 +157,15 @@ void ArtificialNeuralNetwork::train(const vector<double> inputVals)
         }
     }
 };
+
+void ArtificialNeuralNetwork::getResults(vector<double> resultValues)
+{
+    resultValues.clear();
+
+    // Loops through all of the layers in the output layers
+    // TODO change loop condition to neuronCount -1 after bias neurons have been added
+    for (unsigned neuronIndex = 0; neuronIndex < layers.back().neuronCount(); ++neuronIndex)
+    {
+        resultValues.push_back(layers.back().neurons[neuronIndex].getOutputValue());
+    }
+}
