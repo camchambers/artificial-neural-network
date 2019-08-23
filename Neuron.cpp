@@ -48,6 +48,11 @@ double Neuron::calculateOutputGradients(double targetValues)
     return 0.0;
 }
 
+double Neuron::updateInputWeights(Layer &layer)
+{
+    return 0.0;
+}
+
 void Neuron::print()
 {
     cout << "\tNeuron " << neuronIndex + 1 << " ";
