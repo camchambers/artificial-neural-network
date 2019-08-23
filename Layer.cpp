@@ -49,3 +49,18 @@ void Neuron::feedForward(Layer &previousLayer)
 
     this->setOutputValue(outputValue);
 }
+
+double Neuron::sumDerivativeOfWeights(Layer &nextLayer)
+{
+    double sum = 0.0;
+
+    // Sum errors from nodes
+    // TODO change condition to neuronCount() - 1 after adding in bias nodes
+    for (unsigned neuronIndex = 0; neuronIndex < nextLayer.neuronCount(); ++neuronIndex)
+    {
+        sum = sum + connections[neuronIndex].weight * nextLayer.neurons[neuronIndex].gradient;
+    }
+
+    return sum;
+}
+
