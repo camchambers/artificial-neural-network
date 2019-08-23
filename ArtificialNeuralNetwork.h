@@ -16,7 +16,7 @@ public:
     ArtificialNeuralNetwork(const vector<unsigned> &topology);
 
     /**
-     * @brief Back propogate errors allowing the neural network to "learn"
+     * @brief Back propagate errors allowing the neural network to "learn" 
      * 
      * @param targetValues 
      */
@@ -39,4 +39,5 @@ public:
 
 private:
     vector<Layer> layers;
+    double error;
 };
