@@ -45,6 +45,14 @@ public:
     void feedForward(Layer &previousLayer);
 
     /**
+     * @brief Calculates the gradients of hidden layer neurons during back propagation
+     * 
+     * @param nextLayer 
+     * @return double 
+     */
+    double calculateHiddenGradients(Layer &nextLayer);
+
+    /**
      * @brief Prints all of the Connections of a Neuron
      * 
      * @param neuronIndex 
