@@ -35,13 +35,33 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
     }
 };
 
-void ArtificialNeuralNetwork::backPropogate(const vector<double> targetValues)
+void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
 {
-    // Calculate the total net error of the network using
-    // the Root Mean Square (RMS) of the output Neurons
-    // The back propagation function aims to minimize the RMS of the 
-    // output Neurons
+    // A convienance pointer to last layer in the neural network
+    Layer &outputLayer = layers.back();
 
+    // Reset the error of the neural network
+    this->error = 0.0;
+
+    // TODO Set loop condition to layer size -1 when bias neurons are added
+    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.size(); ++neuronIndex)
+    {
+        // Determine the error for the current output node by taking the delta
+        // (difference) between the output value and expected value
+        double delta = targetValues[neuronIndex] - outputLayer[neuronIndex].getOutputValue();
+
+        // Accumulate the squared error for each of the output neurons
+        this->error = this->error + delta * delta;
+    }
+
+    // Get the average of the squared error
+    this->error = this->error / outputLayer.size();
+
+    // Take the square root of the average squared error to get the RMS (the
+    // back propagation function aims to minimize the RMS of the output Neurons)
+    this->error = sqrt(this->error);
+    
+   
     // Calculate the output layer gradients
 
     // Calculate the gradients of the hidden layers
