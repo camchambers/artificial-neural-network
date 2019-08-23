@@ -88,6 +88,22 @@ void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
 
     // Update connection weights for all layers, except for
     // the input layer
+    for (unsigned layerIndex = layers.size() - 1; layerIndex > 0; --layerIndex)
+    {
+        // A convienance variable for the current hidden layer
+        Layer &layer = layers[layerIndex];
+
+        // A convienance variable for the next layer relative to the current one
+        Layer &previousLayer = layers[layerIndex - 1];
+
+        // Iterate over each neuron in the current later and tell the neuron to
+        // update its input weights
+        // TODO set loop condition to neuronCount()+1 after adding bias neurons
+        for (unsigned neuronIndex = 0; neuronIndex < layer.neuronCount(); ++neuronIndex)
+        {
+            layer.neurons[neuronIndex].updateInputWeights(previousLayer);
+        }
+    }
 }
 
 void ArtificialNeuralNetwork::print()
