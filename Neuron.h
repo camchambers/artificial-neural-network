@@ -50,7 +50,7 @@ public:
      * @param nextLayer 
      * @return double 
      */
-    double calculateHiddenGradients(Layer &nextLayer);
+    void calculateHiddenGradients(Layer &nextLayer);
 
     /**
      * @brief Calculates the gradients of output layer neurons during back propagation
@@ -58,7 +58,7 @@ public:
      * @param targetValues 
      * @return double 
      */
-    double calculateOutputGradients(double targetValues);
+    double calculateOutputGradients(double targetValue);
 
     /**
      * @brief Updates the input weights for the current neuron during backpropagation
@@ -77,7 +77,8 @@ public:
 private:
     vector<Connection> connections;
     unsigned neuronIndex = 0;
-    double outputValue = 0;
+    double outputValue = 0.0;
+    double gradient = 0.0;
 
     /**
      * @brief Shapes the output of a Neuron by applying a mathematical formula
@@ -92,4 +93,12 @@ private:
      * 
      */
     double activationFunctionDerivative(double input);
+
+    /**
+     * @brief Determines the sum of the derivatives of the weights of a layer
+     * 
+     * @param nextLayer 
+     * @return double 
+     */
+    double sumDerivativeOfWeights(Layer &nextLayer);
 };
