@@ -38,6 +38,11 @@ double Neuron::activationFunctionDerivative(double input)
     return 1.0 - input * input;
 }
 
+double Neuron::calculateHiddenGradients(Layer &nextLayer)
+{
+    return 0.0;
+}
+
 void Neuron::print()
 {
     cout << "\tNeuron " << neuronIndex + 1 << " ";
