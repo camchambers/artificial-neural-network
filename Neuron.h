@@ -61,6 +61,13 @@ public:
     double calculateOutputGradients(double targetValues);
 
     /**
+     * @brief Updates the input weights for the current neuron during backpropagation
+     * 
+     * @return double 
+     */
+    double updateInputWeights(Layer &layer);
+
+    /**
      * @brief Prints all of the Connections of a Neuron
      * 
      * @param neuronIndex 
