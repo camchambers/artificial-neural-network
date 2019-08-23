@@ -16,10 +16,11 @@ public:
     ArtificialNeuralNetwork(const vector<unsigned> &topology);
 
     /**
-     * @brief Prints all of the layers of an Artificial Neural Network
+     * @brief Back propogate errors allowing the neural network to "learn"
      * 
+     * @param targetValues 
      */
-    void print();
+    void backPropogate(const vector<double> targetValues);
 
     /**
      * @brief Trains an Artificial Neural Network
@@ -29,6 +30,12 @@ public:
      *  the number of input Neuron in the neural network. 
      */
     void train(const vector<double> inputVals);
+
+    /**
+     * @brief Prints all of the layers of an Artificial Neural Network
+     * 
+     */
+    void print();
 
 private:
     vector<Layer> layers;
