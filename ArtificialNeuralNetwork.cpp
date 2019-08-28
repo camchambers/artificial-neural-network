@@ -44,8 +44,7 @@ void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
     // Reset the error of the neural network
     this->error = 0.0;
 
-    // TODO Set loop condition to layer size -1 when bias neurons are added
-    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount(); ++neuronIndex)
+    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount() - 1; ++neuronIndex)
     {
         // Determine the error for the current output node by taking the delta
         // (difference) between the output value and expected value
