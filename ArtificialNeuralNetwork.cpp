@@ -128,7 +128,7 @@ void ArtificialNeuralNetwork::train(const vector<double> inputValues)
 
     // Validate that the rows of the input vector to the Neural Network matches
     // the number of Neurons in the first layer (input Neurons) of the Neural Network
-    if (inputValues.size() != inputLayerSize)
+    if (inputValues.size() != inputLayerSize - 1)
     {
         cout << endl
              << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
