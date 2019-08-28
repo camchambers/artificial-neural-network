@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include "TrainingSet.h"
 #include "ArtificialNeuralNetwork.h"
 
 using namespace std;
@@ -20,6 +21,12 @@ int main()
 
     // Provide a seed for random number generation
     srand(static_cast<unsigned int>(clock()));
+
+    // Instantiate a new training set
+    TrainingSet trainingSet;
+
+    // Read training set from a file
+    trainingSet.read("train.csv");
 
     // Create a vector to store a topology
     vector<unsigned> topology = {4, 6, 3, 2};
