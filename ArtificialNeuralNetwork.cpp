@@ -62,8 +62,7 @@ void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
     this->error = sqrt(this->error);
 
     // Calculate the output layer gradients
-    // TODO Change condition to outputLayer.size() -1 after adding bias neurons
-    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount(); ++neuronIndex)
+    for (unsigned neuronIndex = 0; neuronIndex < outputLayer.neuronCount() - 1; ++neuronIndex)
     {
         outputLayer.neurons[neuronIndex].calculateOutputGradients(targetValues[neuronIndex]);
     }
@@ -97,8 +96,7 @@ void ArtificialNeuralNetwork::backPropagate(const vector<double> targetValues)
 
         // Iterate over each neuron in the current later and tell the neuron to
         // update its input weights
-        // TODO set loop condition to neuronCount()+1 after adding bias neurons
-        for (unsigned neuronIndex = 0; neuronIndex < layer.neuronCount(); ++neuronIndex)
+        for (unsigned neuronIndex = 0; neuronIndex < layer.neuronCount() - 1; ++neuronIndex)
         {
             layer.neurons[neuronIndex].updateInputWeights(previousLayer);
         }
@@ -162,8 +160,7 @@ void ArtificialNeuralNetwork::getResults(vector<double> resultValues)
     resultValues.clear();
 
     // Loops through all of the layers in the output layers
-    // TODO change loop condition to neuronCount -1 after bias neurons have been added
-    for (unsigned neuronIndex = 0; neuronIndex < layers.back().neuronCount(); ++neuronIndex)
+    for (unsigned neuronIndex = 0; neuronIndex < layers.back().neuronCount() - 1; ++neuronIndex)
     {
         resultValues.push_back(layers.back().neurons[neuronIndex].getOutputValue());
     }
