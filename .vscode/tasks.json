@@ -12,6 +12,7 @@
                 "Neuron.cpp",
                 "Layer.cpp",
                 "ArtificialNeuralNetwork.cpp",
+                "TrainingSet.cpp",
                 "-g",
                 "-v",
                 "-std=c++11"
