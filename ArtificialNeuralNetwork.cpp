@@ -14,7 +14,7 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
             cout << ":";
         }
     }
-    cout << " toplogy." << endl;
+    cout << " toplogy.";
 
     // Number of connections to the next layer
     unsigned int numberOfOutputs = 0;
@@ -29,8 +29,8 @@ ArtificialNeuralNetwork::ArtificialNeuralNetwork(const vector<unsigned> &topolog
         numberOfOutputs = layerIndex < (topology.size() - 1) ? topology[layerIndex + 1] : 0;
 
         cout << endl
-             << "Adding a " << layerSize << " neuron layer to the neural network" << endl
-             << endl;
+             << endl
+             << "Adding a " << layerSize << " neuron layer to the neural network";
 
         layers.push_back(Layer(layerSize, layerIndex, numberOfOutputs));
     }
@@ -119,39 +119,56 @@ void ArtificialNeuralNetwork::print()
     cout << endl;
 };
 
-void ArtificialNeuralNetwork::train(const vector<double> inputValues)
+void ArtificialNeuralNetwork::train(TrainingSet &trainingSet)
 {
-    cout << "Training Neural Network" << endl
+    cout << endl
+         << endl
+         << "Training Neural Network" << endl
          << endl;
 
     unsigned inputLayerSize = layers[0].neuronCount();
 
-    // Validate that the rows of the input vector to the Neural Network matches
-    // the number of Neurons in the first layer (input Neurons) of the Neural Network
-    if (inputValues.size() != inputLayerSize - 1)
+    // Iterate over training set
+    for (int recordIndex = 0; recordIndex < trainingSet.recordCount(); recordIndex++)
     {
         cout << endl
-             << "Error: The number of input values does not match the number of input neurons in the Neural Network." << endl
+             << "Training neural network with record " << recordIndex + 1 << "." << endl
              << endl;
-        exit(1);
-    }
 
-    // Assign (latch) input values to the Neurons of the input Layer
-    for (unsigned i = 0; i < inputLayerSize; i++)
-    {
-        layers[0].neurons[i].setOutputValue(inputValues[i]);
-    }
+        vector<double> inputValues = trainingSet.getRecord(recordIndex);
 
-    // Forward propogate input values
-    // Skip the input layer because the output values for the input layer
-    // have already been set
-    for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
-    {
-        Layer &previousLayer = layers[layerIndex - 1];
-        for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
+        // Validate that the rows of the input vector to the Neural Network matches
+        // the number of Neurons in the first layer (input Neurons) of the Neural Network
+        if (inputValues.size() != inputLayerSize - 1)
         {
-            layers[layerIndex].neurons[neuronIndex].feedForward(previousLayer);
+            cout << endl
+                 << "Error: The number of input values (" << inputValues.size()
+                 << ") does not match the number of input neurons ("
+                 << inputLayerSize - 1 << ") in the Neural Network."
+                 << endl
+                 << endl;
+            exit(1);
         }
+
+        // Assign (latch) input values to the Neurons of the input Layer
+        for (unsigned i = 0; i < inputLayerSize; i++)
+        {
+            layers[0].neurons[i].setOutputValue(inputValues[i]);
+        }
+
+        // Forward propogate input values
+        // Skip the input layer because the output values for the input layer
+        // have already been set
+        for (unsigned layerIndex = 1; layerIndex < layers.size(); ++layerIndex)
+        {
+            Layer &previousLayer = layers[layerIndex - 1];
+            for (unsigned neuronIndex = 0; neuronIndex < layers[layerIndex].neuronCount(); ++neuronIndex)
+            {
+                layers[layerIndex].neurons[neuronIndex].feedForward(previousLayer);
+            }
+        }
+
+        this->print();
     }
 };
 
