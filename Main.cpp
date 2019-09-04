@@ -40,9 +40,6 @@ int main()
     // Train the neural network
     ann.train(trainingSet);
 
-    // Print the contents of the neural network
-    ann.print();
-
     // Wait for user input before terminating
     cout << "Press any key to continue...";
     cin.get();

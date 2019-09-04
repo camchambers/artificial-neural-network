@@ -170,6 +170,10 @@ void ArtificialNeuralNetwork::train(TrainingSet &trainingSet)
 
         this->print();
     }
+
+    cout << endl
+         << "Training complete" << endl
+         << endl;
 };
 
 void ArtificialNeuralNetwork::getResults(vector<double> resultValues)
