@@ -129,7 +129,7 @@ void ArtificialNeuralNetwork::train(TrainingSet &trainingSet)
     unsigned inputLayerSize = layers[0].neuronCount();
 
     // Iterate over training set
-    for (int recordIndex = 0; recordIndex < trainingSet.recordCount(); recordIndex++)
+    for (int recordIndex = 0; recordIndex < trainingSet.recordCount() - 1; recordIndex++)
     {
         cout << endl
              << "Training neural network with record " << recordIndex + 1 << "." << endl
