@@ -13,6 +13,53 @@ int TrainingSet::recordCount()
     return this->numberOfRecords;
 }
 
+// Reads a file to create a training set
+void TrainingSet::read(string fileName)
+{
+    // Temporary variable to store the parsed dataset
+    vector<vector<double>> data;
+
+    // Input stream reader for reading the file
+    ifstream inputFile(fileName);
+
+    // Keep track of lines being parsed
+    int lineNumber = 0;
+
+    // Parse the input file
+    while (inputFile)
+    {
+        lineNumber++;
+        string line;
+
+        // Exit if there are no more lines to read
+        if (!getline(inputFile, line))
+        {
+            break;
+        }
+
+        stringstream stringStream(line);
+
+        vector<double> record;
+
+        // While the line can be parsed
+        while (stringStream.good())
+        {
+            // A vector of parsed elements from the line
+            string substring;
+            getline(stringStream, substring, ',');
+            // Convert the string to a double
+            double convertedValue = stod(substring);
+            // Append the value to our record vector
+            record.push_back(convertedValue);
+        }
+        this->trainingData.push_back(record);
+    }
+
+    inputFile.close();
+
+    this->numberOfRecords = lineNumber;
+};
+
 vector<double> TrainingSet::getRecord(int index)
 {
     if (index > this->numberOfRecords)
