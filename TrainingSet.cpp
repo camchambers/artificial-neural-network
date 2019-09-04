@@ -13,9 +13,12 @@ int TrainingSet::recordCount()
     return this->numberOfRecords;
 }
 
-// Reads a file to create a training set
-void TrainingSet::read(string fileName)
+vector<double> TrainingSet::getRecord(int index)
 {
-    cout << "Attempting to read traning set from file \"" << fileName << "\"" << endl
-         << endl;
+    if (index > this->numberOfRecords)
+    {
+        cout << "Error: invalid training set index";
+        exit(1);
+    }
+    return this->trainingData[readIndex];
 }
