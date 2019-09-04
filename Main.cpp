@@ -11,8 +11,24 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
+
+    // Validate that a training set csv was passed in as an argument
+    if (argc != 2)
+    {
+        cout << "Error: please specify a CSV training set filename." << endl
+             << endl;
+        exit(1);
+    }
+
+    // TODO validate file exists
+
+    // TODO validate file is of type CSV
+
+    // Set the filename based on the argument passed in
+    string fileName = argv[1];
+
     cout << "ARTIFICIAL NERAL NETWORK" << endl
          << endl;
 
@@ -26,7 +42,7 @@ int main()
     TrainingSet trainingSet;
 
     // Read training set from a file
-    trainingSet.read("train.csv");
+    trainingSet.read(fileName);
 
     // Create a vector to store a topology
     vector<unsigned> topology = {4, 6, 3, 2};
