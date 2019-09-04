@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Layer.h"
+#include "TrainingSet.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ public:
      *  The number of rows in the input value vector must equal
      *  the number of input Neuron in the neural network. 
      */
-    void train(const vector<double> inputValues);
+    void train(TrainingSet &trainingSet);
 
     /**
      * @brief Returns the neural network results
