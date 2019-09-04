@@ -12,14 +12,18 @@ Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     // Populate the Layer with Neurons based on the numberOfNeurons parameter
     for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
     {
-        cout << "\tAdding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << "." << endl;
+        cout << endl
+             << endl
+             << "\tAdding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << ".";
         neurons.push_back(Neuron(neuronIndex, numberOfOutputs));
     }
 
     // Add a bias Neuron to the layer
-    cout << "\tAdding bias neuron "
+    cout << endl
+         << endl
+         << "\tAdding bias neuron "
          << "(neuron " << numberOfNeurons + 1 << ")"
-         << " to layer " << layerIndex + 1 << "." << endl;
+         << " to layer " << layerIndex + 1 << ".";
     neurons.push_back(Neuron(numberOfNeurons, numberOfOutputs));
 }
 
