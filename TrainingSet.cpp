@@ -14,6 +14,7 @@ int TrainingSet::recordCount()
 }
 
 // Reads a file to create a training set
+// TODO Have the read function parse number of elements in the line -1 and create another function for parsing out the last element of each line (class label)
 void TrainingSet::read(string fileName)
 {
     // Temporary variable to store the parsed dataset
@@ -55,11 +56,13 @@ void TrainingSet::read(string fileName)
         this->trainingData.push_back(record);
     }
 
+    // Close the file connection
     inputFile.close();
 
     this->numberOfRecords = lineNumber;
 };
 
+// Gets a record from the training set given a record index
 vector<double> TrainingSet::getRecord(int index)
 {
     if (index > this->numberOfRecords)
@@ -67,5 +70,5 @@ vector<double> TrainingSet::getRecord(int index)
         cout << "Error: invalid training set index";
         exit(1);
     }
-    return this->trainingData[readIndex];
+    return this->trainingData[index];
 }
