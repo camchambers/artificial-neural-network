@@ -15,7 +15,7 @@
                 "trace": false
             },
             "showDisplayString": false,
-            "args": [],
+            "args": ["train.csv"],
             "stopAtEntry": false,
             "cwd": "${workspaceRoot}",
             "environment": [],
