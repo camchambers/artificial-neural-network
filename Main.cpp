@@ -34,23 +34,14 @@ int main()
     // Instantiate a new artificial neural network object
     ArtificialNeuralNetwork ann(topology);
 
-    // Print neural network contents
+    // Print the contents of the neural network
     ann.print();
-
-    // Define input to the artificial neural network
-    vector<double> inputVals = {2.24, 6, 41, 7.48};
 
     // Train the neural network
-    ann.train(inputVals);
+    ann.train(trainingSet);
 
-    // Re-print the neural network after input values have been updated
+    // Print the contents of the neural network
     ann.print();
-
-    // Define a results vector
-    vector<double> resultValues;
-
-    // Get results
-    ann.getResults(resultValues);
 
     // Wait for user input before terminating
     cout << "Press any key to continue...";
