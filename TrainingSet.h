@@ -9,6 +9,6 @@ public:
     void scale();
 
 private:
-    vector<string> classLabels;
     vector<vector<double>> trainingData;
+    vector<int> classLabels;
 };
