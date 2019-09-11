@@ -122,14 +122,12 @@ void ArtificialNeuralNetwork::print()
 void ArtificialNeuralNetwork::train(TrainingSet &trainingSet)
 {
     cout << endl
-         << endl
-         << "Training Neural Network" << endl
-         << endl;
+         << "Training Neural Network" << endl;
 
     unsigned inputLayerSize = layers[0].neuronCount();
 
     // Iterate over training set
-    for (int recordIndex = 0; recordIndex < trainingSet.recordCount() - 1; recordIndex++)
+    for (int recordIndex = 0; recordIndex < trainingSet.getNumberOfRows() - 1; recordIndex++)
     {
         cout << endl
              << "Training neural network with record " << recordIndex + 1 << "." << endl
