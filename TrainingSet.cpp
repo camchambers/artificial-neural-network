@@ -7,29 +7,33 @@
 
 using namespace std;
 
-// Return the number of records read by the training set
-int TrainingSet::recordCount()
+int TrainingSet::getNumberOfRows()
 {
-    return this->numberOfRecords;
+    return this->numberOfRows;
+}
+
+int TrainingSet::getNumberOfColumns()
+{
+    return this->numberOfColumns;
 }
 
 // Reads a file to create a training set
 // TODO Have the read function parse number of elements in the line -1 and create another function for parsing out the last element of each line (class label)
 void TrainingSet::read(string fileName)
 {
+
+    // Get data set dimensions
+    this->getDimensions(fileName);
+
     // Temporary variable to store the parsed dataset
     vector<vector<double>> data;
 
     // Input stream reader for reading the file
     ifstream inputFile(fileName);
 
-    // Keep track of lines being parsed
-    int lineNumber = 0;
-
     // Parse the input file
     while (inputFile)
     {
-        lineNumber++;
         string line;
 
         // Exit if there are no more lines to read
@@ -78,4 +82,55 @@ vector<double> TrainingSet::getRecord(int index)
         exit(1);
     }
     return this->trainingData[index];
+}
+
+void TrainingSet::getDimensions(string fileName)
+{
+
+    int numberOfColumns = 0;
+    int numberOfRows = 0;
+
+    // Input stream reader for reading the file
+    ifstream inputFile(fileName);
+
+    // Temporary variable for reading a line
+    string line;
+
+    // Determine the number of columns using the first line
+    getline(inputFile, line);
+
+    // Increment the number of rows since we read the first line
+    numberOfRows++;
+
+    // Stream object for the current line
+    stringstream stringStream(line);
+
+    // Determine number of columns using the first line
+    while (stringStream.good())
+    {
+        numberOfColumns++;
+
+        // A vector of parsed elements from the line
+        string substring;
+
+        getline(stringStream, substring, ',');
+        // Convert the string to a double
+    }
+
+    // Determine number of rows
+    while (inputFile)
+    {
+        // Exit if there are no more lines to read
+        if (!getline(inputFile, line))
+        {
+            break;
+        }
+        numberOfRows++;
+    }
+
+    // Close the file connection
+    inputFile.close();
+
+    this->numberOfColumns = numberOfColumns;
+    this->numberOfRows = numberOfRows;
 }
