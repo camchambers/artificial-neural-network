@@ -13,11 +13,10 @@ public:
     void read(string filename);
 
     /**
-     * @brief The number of records in the CSV file that has been read
+     * @brief Prints the training data
      * 
-     * @return int 
      */
-    int recordCount();
+    void print();
 
     /**
      * @brief Gets a particular record from the training set given an index
