@@ -9,8 +9,8 @@
 - [x] Seperate classes into discrete files
 - [x] Add bias nodes automatically while constructing the network
 - [x] Complete a functioning neural network
+- [x] Write a function for reading training data from a CSV
 - [ ] Add the ability to evaluate a test set 
-- [ ] Write a function for reading training data from a CSV
 - [ ] Write a function for reading test data from a CSV
 - [ ] Write a program to scale training and test data
 - [ ] Add the ability to support multiple activation functions
