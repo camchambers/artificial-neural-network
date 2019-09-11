@@ -29,7 +29,8 @@ int main(int argc, char *argv[])
     // Set the filename based on the argument passed in
     string fileName = argv[1];
 
-    cout << "ARTIFICIAL NERAL NETWORK" << endl
+    cout << endl
+         << "ARTIFICIAL NERAL NETWORK" << endl
          << endl;
 
     // Define number of decimal places for printing output
@@ -42,7 +43,16 @@ int main(int argc, char *argv[])
     TrainingSet trainingSet;
 
     // Read training set from a file
+    cout << "Reading training set." << endl
+         << endl;
     trainingSet.read(fileName);
+    cout << "Done." << endl
+         << endl;
+
+    // Print training set
+    cout << "Printing training set." << endl
+         << endl;
+    trainingSet.print();
 
     // Create a vector to store a topology
     vector<unsigned> topology = {4, 6, 3, 2};
