@@ -42,30 +42,37 @@ void TrainingSet::read(string fileName)
 
         vector<double> record;
 
-        // While the line can be parsed
-        while (stringStream.good())
+        string substring;
+
+        for (int columns = 0; columns <= this->numberOfColumns - 2; columns++)
         {
             // A vector of parsed elements from the line
-            string substring;
+
             getline(stringStream, substring, ',');
+
             // Convert the string to a double
             double convertedValue = stod(substring);
+
             // Append the value to our record vector
             record.push_back(convertedValue);
         }
+
+        // Push the record onto the training data vector
         this->trainingData.push_back(record);
+
+        // Retrieve the class label
+        getline(stringStream, substring, ',');
+        this->classLabels.push_back(stoi(substring));
     }
 
     // Close the file connection
     inputFile.close();
-
-    this->numberOfRecords = lineNumber;
 };
 
 // Gets a record from the training set given a record index
 vector<double> TrainingSet::getRecord(int index)
 {
-    if (index > this->numberOfRecords)
+    if (index > this->numberOfRows)
     {
         cout << "Error: invalid training set index";
         exit(1);
