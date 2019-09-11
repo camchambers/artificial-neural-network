@@ -33,6 +33,26 @@ public:
      */
     void scale();
 
+    /**
+     * @brief Determines the dimensions of a dataset (rows and columns)
+     * 
+     * @param fileName The name of the file
+     * @return vector<double> A vector of dimensions
+     */
+    void getDimensions(string fileName);
+
+    /**
+     * @brief Gets the number of records from a a data set 
+     * 
+     */
+    int getNumberOfRows();
+
+    /**
+     * @brief Gets the number of columns from a a data set 
+     * 
+     */
+    int getNumberOfColumns();
+
 private:
     /**
      * @brief The parsed training data read from the CSV file
