@@ -50,5 +50,11 @@ private:
      * @brief The number of records read from the training set file
      * 
      */
-    int numberOfRecords;
+    int numberOfRows;
+
+    /**
+     * @brief The number of columns in the data set training set training file
+     * 
+     */
+    int numberOfColumns;
 };
