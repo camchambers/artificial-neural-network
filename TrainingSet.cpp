@@ -134,3 +134,21 @@ void TrainingSet::getDimensions(string fileName)
     this->numberOfColumns = numberOfColumns;
     this->numberOfRows = numberOfRows;
 }
+
+void TrainingSet::print()
+{
+    for (int x = 0; x < this->numberOfRows; x++)
+    {
+        for (int y = 0; y < this->numberOfColumns - 1; y++)
+        {
+            cout << this->trainingData[x][y];
+
+            if (y != this->numberOfColumns - 2)
+            {
+                cout << ", ";
+            }
+        }
+        cout << " = " << this->classLabels[x] << endl;
+    }
+    cout << endl;
+}
