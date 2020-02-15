@@ -1,6 +1,5 @@
-# C++ Artificial Neural Network (ANN)
-
-> A simple object-oriented artificial neural network (ANN) built in C++
+# Artificial Neural Network
+> A simple implementation of an [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANN) written in C++
 
 ### TO DO
 
@@ -40,3 +39,10 @@
 ### Clone
 
 - Clone this repo to your local machine using `git@github.com:camchambers/ann.git`
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2020 © <a href="https://www.camchambers.com" target="_blank">Cam Chambers</a>.
