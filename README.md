@@ -1,5 +1,5 @@
 # Artificial Neural Network
-> A simple implementation of an [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANN) written in C++
+> An implementation of an [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANN) written in C++
 
 ### TO DO
 
@@ -14,7 +14,7 @@
 - [ ] Write a program to scale training and test data
 - [ ] Add the ability to support multiple activation functions
 
-## Example (Optional)
+## Example
 
 ```cpp
 
