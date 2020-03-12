@@ -34,6 +34,10 @@
     ann.print();
 
 ```
+## FAQ
+**Many machine learning libraries exist with Artifical Nerual Network implementations. Why reinvent the wheel?**
+
+Building a solution from scratch allows for mastery (a deep understanding of how all of the pieces of a solution work) and creativity (extending or changing how a solution behaves). 
 
 ---
 ### Clone
