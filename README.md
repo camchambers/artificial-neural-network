@@ -1,5 +1,5 @@
 # Artificial Neural Network
-> An implementation of an [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANN) written in C++
+> An [Artificial Neural Network](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANN) is a [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning) algorithm used for pattern recognition (classification) and regression. 
 
 ### TO DO
 
