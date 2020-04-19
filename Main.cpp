@@ -15,19 +15,19 @@ int main(int argc, char *argv[])
 {
 
     // Validate that a training set csv was passed in as an argument
-    if (argc != 2)
-    {
-        cout << "Error: please specify a CSV training set filename." << endl
-             << endl;
-        exit(1);
-    }
+    //if (argc != 2)
+    //{
+    //    cout << "Error: please specify a CSV training set filename." << endl
+    //         << endl;
+    //    exit(1);
+    //}
 
     // TODO validate file exists
 
     // TODO validate file is of type CSV
 
     // Set the filename based on the argument passed in
-    string fileName = argv[1];
+    //string fileName = argv[1];
 
     cout << endl
          << "ARTIFICIAL NERAL NETWORK" << endl
@@ -40,19 +40,19 @@ int main(int argc, char *argv[])
     srand(static_cast<unsigned int>(clock()));
 
     // Instantiate a new training set
-    TrainingSet trainingSet;
+    //TrainingSet trainingSet;
 
     // Read training set from a file
-    cout << "Reading training set." << endl
-         << endl;
-    trainingSet.read(fileName);
-    cout << "Done." << endl
-         << endl;
+    //cout << "Reading training set." << endl
+    //     << endl;
+    //trainingSet.read(fileName);
+    //cout << "Done." << endl
+    //     << endl;
 
     // Print training set
-    cout << "Printing training set." << endl
-         << endl;
-    trainingSet.print();
+    //cout << "Printing training set." << endl
+    //     << endl;
+    //trainingSet.print();
 
     // Create a vector to store a topology
     vector<unsigned> topology = {4, 6, 3, 2};
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     ann.print();
 
     // Train the neural network
-    ann.train(trainingSet);
+   // ann.train(trainingSet);
 
     // Wait for user input before terminating
     cout << "Press any key to continue...";
