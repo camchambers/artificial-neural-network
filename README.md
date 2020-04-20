@@ -29,13 +29,40 @@ The Artificial Neural Network class also has an option to print the contents of 
 ```cppp
     ann.print();
 ```
+
+## Compilation
+
+### Using CMake:
+```bash
+# Create a build directory within the project folder
+mkdir build
+
+# Navigate into the build directory
+cd build
+
+# Run cmake - targeting the parent directory
+cmake ..
+
+# Finish building the program with make
+make
+```
+
+### Using Visual Studio
+1. Make sure [C++ support](https://docs.microsoft.com/en-us/cpp) is installed in your version of Visual Studio
+2. Open Visual Studio
+3. Select "Open a local folder"
+4. Select the project ("artificial-neural-network")
+5. Select *Build* from the menu and then *Build all*
+6. Select *ann.exe* from the run button drop down
+7. Run the project using the run button
+
 ## FAQ
 **Many machine learning libraries exist with Artifical Nerual Network implementations. Why reinvent the wheel?**
 
 Building a solution from scratch allows for mastery (a deep understanding of how all of the pieces of a solution work) and creativity (extending or changing how a solution behaves). 
 
 ---
-### Clone
+## Clone
 
 - Clone this repo to your local machine using `git@github.com:camchambers/ann.git`
 
