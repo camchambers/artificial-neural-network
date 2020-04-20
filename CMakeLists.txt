@@ -3,6 +3,8 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
+set(CMAKE_CXX_STANDARD 11)
+
 project ("ArtificialNeuralNetwork")
 
 include_directories(${PROJECT_SOURCE_DIR})
@@ -24,4 +26,4 @@ ArtificialNeuralNetwork
 )
 
 
-# TODO: Add tests and install targets if needed.
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME "ann")
