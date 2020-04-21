@@ -1,9 +1,9 @@
 # Artificial Neural Network
 >[Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANNs) are biologically inspired models of human central nervous system activity [[1]](#footnote_1)[[2]](#footnote_2) commonly used for classification and regression [[3]](#footnote_3) in the field of [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning).
 
->The following project is a basic implementation of an ANN written in C++ where an artificial neural network can be constructed and used to classify data as follows: 
+>The following project is a basic C++ implementation of an artificial neural network. Using this project, an ANN can be customized to classify a dataset as follows: 
 
-1. Define a network topology as a vector that specifies the number of layers (number of elements in the vector) and nodes per layer (numeric values contained in the vector). Typically, the input layer (first element in the vector) matches the number of variables in our classification problem, and the output layer matches the number of class labels in our classification problem. 
+1. Define a network topology as a vector that specifies the number of layers (number of elements in the vector) and nodes per layer (numeric values contained in the vector). Typically, the input layer (first element in the vector) matches the number of variables in our classification problem, and the output layer matches the number of class labels (ie. true and false for a binary classification problem). 
 
 ```cpp
     vector<unsigned> topology = {4, 6, 3, 2};
@@ -13,7 +13,7 @@
     ArtificialNeuralNetwork ann(topology);
 ```
 
-3. Train the neural network using a training set. This is where the artificial neural network learns underlying relationships within the data and is able to infer classification patterns. The training set must be a CSV file with the class label as the last element. 
+3. Train the neural network using a training set. Here, the ANN learns underlying relationships within the data and is able to infer classification patterns. The training set must be a CSV file with the class label as the last element. 
 
 ```cppp
     ann.train("train.csv");
@@ -25,26 +25,37 @@
     ann.test("test.csv");
 ```
 
-The Artificial Neural Network class also has an option to print the contents of the network (the weights for each node). 
+The Artificial Neural Network class also has the capability to print the contents of the network (the weights and values for each node in every layer). 
+
 ```cppp
     ann.print();
 ```
 
 ## Compilation
 
-### Using CMake:
+### Using CMake
 ```bash
-# Create a build directory within the project folder
+# 1. Create a build directory within the project folder
 mkdir build
 
-# Navigate into the build directory
+# 2. Navigate into the build directory
 cd build
 
-# Run cmake - targeting the parent directory
+# 3.  Run cmake - targeting the parent directory
 cmake ..
 
-# Finish building the program with make
+# 4. Finish building the program with make
 make
+```
+
+### Using G++
+```bash
+
+# 1. Navigate into the project directory
+cd artificial-neural-network
+
+# 2. Compile the executable
+g++ -std=c++11 -o ann *.cpp
 ```
 
 ### Using Visual Studio
