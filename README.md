@@ -1,7 +1,10 @@
 # Artificial Neural Network
->[Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANNs) are biologically inspired models of human central nervous system activity [[1]](#footnote_1)[[2]](#footnote_2) commonly used for classification and regression [[3]](#footnote_3) in the field of [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning).
+>[Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANNs) are biologically inspired models of human central nervous system activity [[1]](#footnote_1)[[2]](#footnote_2) commonly used for classification and regression [[3]](#footnote_3) in the field of [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning). The following project is a basic C++ implementation of an artificial neural network. 
 
->The following project is a basic C++ implementation of an artificial neural network. Using this project, an ANN can be customized to classify a dataset as follows: 
+
+## Usage
+
+Using this project, an ANN can be customized to classify a dataset as follows: 
 
 1. Define a network topology as a vector that specifies the number of layers (number of elements in the vector) and nodes per layer (numeric values contained in the vector). Typically, the input layer (first element in the vector) matches the number of variables in our classification problem, and the output layer matches the number of class labels (ie. true and false for a binary classification problem). 
 
