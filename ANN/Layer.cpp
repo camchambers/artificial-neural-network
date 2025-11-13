@@ -10,7 +10,7 @@ Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     layerIndex = index;
 
     // Populate the Layer with Neurons based on the numberOfNeurons parameter
-    for (unsigned neuronIndex = 0; neuronIndex < numberOfNeurons; ++neuronIndex)
+    for (auto neuronIndex = 0u; neuronIndex < numberOfNeurons; ++neuronIndex)
     {
         cout << endl
              << endl
@@ -27,14 +27,14 @@ Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     neurons.push_back(Neuron(numberOfNeurons, numberOfOutputs));
 }
 
-unsigned Layer::neuronCount()
+unsigned Layer::neuronCount() const
 {
     return neurons.size();
 }
 
-void Layer::print()
+void Layer::print() const
 {
-    for (unsigned neuronIndex = 0; neuronIndex < neurons.size(); ++neuronIndex)
+    for (auto neuronIndex = 0u; neuronIndex < neurons.size(); ++neuronIndex)
     {
         neurons[neuronIndex].print();
     }
@@ -50,7 +50,7 @@ void Neuron::feedForward(Layer &previousLayer)
     double sum = 0.0;
 
     // Loop through all of the neurons in the previous layer
-    for (unsigned neuronIndex = 0; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
+    for (auto neuronIndex = 0u; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
     {
         sum = sum + previousLayer.neurons[neuronIndex].getOutputValue() * previousLayer.neurons[neuronIndex].connections[this->neuronIndex].weight;
     }
@@ -65,7 +65,7 @@ double Neuron::sumDerivativeOfWeights(Layer &nextLayer)
     double sum = 0.0;
 
     // Sum errors from nodes
-    for (unsigned neuronIndex = 0; neuronIndex < nextLayer.neuronCount() - 1; ++neuronIndex)
+    for (auto neuronIndex = 0u; neuronIndex < nextLayer.neuronCount() - 1; ++neuronIndex)
     {
         sum = sum + connections[neuronIndex].weight * nextLayer.neurons[neuronIndex].gradient;
     }
@@ -75,9 +75,9 @@ double Neuron::sumDerivativeOfWeights(Layer &nextLayer)
 
 double Neuron::updateInputWeights(Layer &previousLayer)
 {
-    for (unsigned neuronIndex = 0; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
+    for (auto neuronIndex = 0u; neuronIndex < previousLayer.neuronCount(); ++neuronIndex)
     {
-        // A convienance variable to refer to the indexed neuron in the previous layer
+        // A convenience variable to refer to the indexed neuron in the previous layer
         Neuron &neuron = previousLayer.neurons[neuronIndex];
         double oldDeltaWeight = neuron.connections[this->neuronIndex].deltaWeight;
 

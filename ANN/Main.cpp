@@ -14,7 +14,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     cout << endl
-         << "ARTIFICIAL NERAL NETWORK" << endl
+         << "ARTIFICIAL NEURAL NETWORK" << endl
          << endl;
 
     // Define number of decimal places for printing output
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     srand(static_cast<unsigned int>(clock()));
  
     // Create a vector to store a topology
-    vector<unsigned> topology = {4, 6, 3, 2};
+    std::vector<unsigned> topology = {4, 6, 3, 2};
 
     // Instantiate a new artificial neural network object
     ArtificialNeuralNetwork ann(topology);

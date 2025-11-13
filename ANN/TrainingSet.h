@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-using namespace std;
+#include <string>
 
 class TrainingSet
 {
@@ -10,7 +10,7 @@ public:
      * 
      * @param filename the relative path to the csv file to be read
      */
-    void read(string filename);
+    void read(std::string filename);
 
     /**
      * @brief Prints the training data
@@ -22,9 +22,9 @@ public:
      * @brief Gets a particular record from the training set given an index
      * 
      * @param index The index of the record to read
-     * @return vector<double> 
+     * @return std::vector<double> 
      */
-    vector<double> getRecord(int index);
+    std::vector<double> getRecord(int index) const;
 
     /**
      * @brief Scales training data to ensure attributes are weighted equally
@@ -36,34 +36,34 @@ public:
      * @brief Determines the dimensions of a dataset (rows and columns)
      * 
      * @param fileName The name of the file
-     * @return vector<double> A vector of dimensions
+     * @return std::vector<double> A vector of dimensions
      */
-    void getDimensions(string fileName);
+    void getDimensions(std::string fileName);
 
     /**
      * @brief Gets the number of records from a a data set 
      * 
      */
-    int getNumberOfRows();
+    int getNumberOfRows() const;
 
     /**
      * @brief Gets the number of columns from a a data set 
      * 
      */
-    int getNumberOfColumns();
+    int getNumberOfColumns() const;
 
 private:
     /**
      * @brief The parsed training data read from the CSV file
      * 
      */
-    vector<vector<double>> trainingData;
+    std::vector<std::vector<double>> trainingData;
 
     /**
      * @brief Parsed class labels read from the CSV file
      * 
      */
-    vector<int> classLabels;
+    std::vector<int> classLabels;
 
     /**
      * @brief The number of records read from the training set file

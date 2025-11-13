@@ -25,5 +25,5 @@ public:
      * 
      * @param connectionIndex 
      */
-    void print();
+    void print() const;
 };

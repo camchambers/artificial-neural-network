@@ -2,8 +2,6 @@
 #include <vector>
 #include "Connection.h"
 
-using namespace std;
-
 class Layer;
 
 /**
@@ -35,7 +33,7 @@ public:
      * @brief Gets the output value of the current Neuron
      * 
      */
-    double getOutputValue();
+    double getOutputValue() const;
 
     /**
      * @brief Feeds forward outputs from the previous layer into the current neuron
@@ -72,10 +70,10 @@ public:
      * 
      * @param neuronIndex 
      */
-    void print();
+    void print() const;
 
 private:
-    vector<Connection> connections;
+    std::vector<Connection> connections;
     unsigned neuronIndex = 0;
     double outputValue = 0.0;
     double gradient = 0.0;
