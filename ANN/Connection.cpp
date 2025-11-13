@@ -11,7 +11,7 @@ static uniform_real_distribution<double> dis(-1.0, 1.0); // distribution
 
 Connection::Connection()
 {
-    weight = dis(gen); // please explain this
+    weight = dis(gen);
 }
 
 void Connection::print() const
