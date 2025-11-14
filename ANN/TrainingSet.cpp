@@ -7,19 +7,19 @@
 
 using namespace std;
 
-int TrainingSet::getNumberOfRows()
+int TrainingSet::getNumberOfRows() const
 {
     return this->numberOfRows;
 }
 
-int TrainingSet::getNumberOfColumns()
+int TrainingSet::getNumberOfColumns() const
 {
     return this->numberOfColumns;
 }
 
 // Reads a file to create a training set
 // TODO Have the read function parse number of elements in the line -1 and create another function for parsing out the last element of each line (class label)
-void TrainingSet::read(string fileName)
+void TrainingSet::read(std::string fileName)
 {
 
     // Get data set dimensions
@@ -74,7 +74,7 @@ void TrainingSet::read(string fileName)
 };
 
 // Gets a record from the training set given a record index
-vector<double> TrainingSet::getRecord(int index)
+vector<double> TrainingSet::getRecord(int index) const
 {
     if (index > this->numberOfRows)
     {
@@ -84,7 +84,7 @@ vector<double> TrainingSet::getRecord(int index)
     return this->trainingData[index];
 }
 
-void TrainingSet::getDimensions(string fileName)
+void TrainingSet::getDimensions(std::string fileName)
 {
 
     int numberOfColumns = 0;
@@ -137,9 +137,9 @@ void TrainingSet::getDimensions(string fileName)
 
 void TrainingSet::print()
 {
-    for (int x = 0; x < this->numberOfRows; x++)
+    for (auto x = 0; x < this->numberOfRows; x++)
     {
-        for (int y = 0; y < this->numberOfColumns - 1; y++)
+        for (auto y = 0; y < this->numberOfColumns - 1; y++)
         {
             cout << this->trainingData[x][y];
 

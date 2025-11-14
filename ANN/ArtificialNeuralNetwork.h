@@ -4,8 +4,6 @@
 #include "Layer.h"
 #include "TrainingSet.h"
 
-using namespace std;
-
 class ArtificialNeuralNetwork
 {
 public:
@@ -14,14 +12,14 @@ public:
      * 
      * @param topology The topology (number of Neurons in each layer) of the neural network
      */
-    ArtificialNeuralNetwork(const vector<unsigned> &topology);
+    ArtificialNeuralNetwork(const std::vector<unsigned> &topology);
 
     /**
      * @brief Back propagate errors allowing the neural network to "learn" 
      * 
      * @param targetValues 
      */
-    void backPropagate(const vector<double> targetValues);
+    void backPropagate(const std::vector<double>& targetValues);
 
     /**
      * @brief Trains an Artificial Neural Network
@@ -35,17 +33,17 @@ public:
     /**
      * @brief Returns the neural network results
      * 
-     * @param inputVals 
+     * @param resultValues 
      */
-    void getResults(vector<double> resultValues);
+    void getResults(std::vector<double>& resultValues) const;
 
     /**
      * @brief Prints all of the layers of an Artificial Neural Network
      * 
      */
-    void print();
+    void print() const;
 
 private:
-    vector<Layer> layers;
+    std::vector<Layer> layers;
     double error;
 };

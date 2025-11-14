@@ -2,6 +2,8 @@
 #include <cmath>
 #include "Neuron.h"
 
+using namespace std;
+
 Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
 {
     // Set the index of the current neuron
@@ -10,7 +12,7 @@ Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
     // Create connections for each neuron
     if (numberOfOutputConnections > 0)
     {
-        for (unsigned connectionIndex = 0; connectionIndex < numberOfOutputConnections; ++connectionIndex)
+        for (auto connectionIndex = 0u; connectionIndex < numberOfOutputConnections; ++connectionIndex)
         {
             cout << endl
                  << "\t\tAdding connection " << (connectionIndex + 1) << " with " << numberOfOutputConnections << " outputs";
@@ -19,7 +21,7 @@ Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
     }
 }
 
-double Neuron::getOutputValue()
+double Neuron::getOutputValue() const
 {
     return outputValue;
 }
@@ -44,8 +46,10 @@ void Neuron::calculateHiddenGradients(Layer &nextLayer)
     // The error difference in this case is calculated by taking the sum of the
     // derivatives of the weights of the next layer because we don't have a
     // target value that we can compare with
-    // The equivalent of the error delta is the sum of the derivatives of the next layer
-    double sumDerivativeOfWeights = 0.0;
+    double sumDerivativeOfWeights = this->sumDerivativeOfWeights(nextLayer);
+    
+    // Calculate gradient using the sum of derivatives and activation function derivative
+    this->gradient = sumDerivativeOfWeights * activationFunctionDerivative(this->outputValue);
 }
 
 void Neuron::calculateOutputGradients(double targetValue)
@@ -55,17 +59,17 @@ void Neuron::calculateOutputGradients(double targetValue)
 
     // Multiply the delta by the derivative of the neuron's output value
     // causing the output of the neural network to reduce its overall error
-    this->gradient = Neuron::activationFunctionDerivative(outputValue);
+    this->gradient = delta * activationFunctionDerivative(this->outputValue);
 }
 
 double Neuron::learningRate = 0.15;
 
 double Neuron::momentumValue = 0.5;
 
-void Neuron::print()
+void Neuron::print() const
 {
     cout << "\tNeuron " << neuronIndex + 1 << " ";
-    for (auto connection : connections)
+    for (const auto& connection : connections)
     {
         cout << "(" << outputValue << ",";
         connection.print();

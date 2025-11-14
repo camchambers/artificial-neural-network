@@ -1,13 +1,11 @@
 #pragma once
 #include "Neuron.h"
 
-using namespace std;
-
 class Layer
 {
 public:
     unsigned layerIndex;
-    vector<Neuron> neurons;
+    std::vector<Neuron> neurons;
 
     /**
      * @brief Construct a new Layer object
@@ -23,11 +21,11 @@ public:
      * @brief Prints the number of neurons in the layer
      * 
      */
-    unsigned neuronCount();
+    unsigned neuronCount() const;
 
     /**
      * @brief Prints all of the Neurons of a Layer
      * 
      */
-    void print();
+    void print() const;
 };
