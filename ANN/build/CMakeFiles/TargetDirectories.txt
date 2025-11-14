@@ -1,3 +1,0 @@
-/home/runner/work/artificial-neural-network/artificial-neural-network/ANN/build/CMakeFiles/ArtificialNeuralNetwork.dir
-/home/runner/work/artificial-neural-network/artificial-neural-network/ANN/build/CMakeFiles/edit_cache.dir
-/home/runner/work/artificial-neural-network/artificial-neural-network/ANN/build/CMakeFiles/rebuild_cache.dir
