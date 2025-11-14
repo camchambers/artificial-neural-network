@@ -18,14 +18,10 @@ Using this project, an ANN can be customized to classify a dataset as follows:
 
 3. Train the neural network using a training set. Here, the ANN learns underlying relationships within the data and is able to infer classification patterns. The training set must be a CSV file with the class label as the last element. 
 
-```cppp
-    ann.train("train.csv");
-```
-
-4. Use the trained model to classify new data 
-
-```cppp
-    ann.test("test.csv");
+```cpp
+    TrainingSet trainingSet;
+    trainingSet.read("train.csv");
+    ann.train(trainingSet);
 ```
 
 The Artificial Neural Network class also has the capability to print the contents of the network (the weights and values for each node in every layer). 
@@ -38,36 +34,38 @@ The Artificial Neural Network class also has the capability to print the content
 
 ### Using CMake
 ```bash
-# 1. Create a build directory within the project folder
+# 1. Navigate into the ANN directory
+cd ANN
+
+# 2. Create a build directory
 mkdir build
 
-# 2. Navigate into the build directory
+# 3. Navigate into the build directory
 cd build
 
-# 3.  Run cmake - targeting the parent directory
+# 4. Run cmake - targeting the parent directory
 cmake ..
 
-# 4. Finish building the program with make
+# 5. Finish building the program with make
 make
 ```
 
 ### Using G++
 ```bash
-
-# 1. Navigate into the project directory
-cd artificial-neural-network
+# 1. Navigate into the ANN directory
+cd ANN
 
 # 2. Compile the executable
-g++ -std=c++11 -o ann *.cpp
+g++ -std=c++17 -o ann Main.cpp ArtificialNeuralNetwork.cpp Layer.cpp Neuron.cpp Connection.cpp TrainingSet.cpp
 ```
 
 ### Using Visual Studio
-1. Make sure [C++ support](https://docs.microsoft.com/en-us/cpp) is installed in your version of Visual Studio
+1. Make sure [CMake support for C++](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio) is installed in your version of Visual Studio
 2. Open Visual Studio
 3. Select "Open a local folder"
-4. Select the project ("artificial-neural-network")
-5. Select *Build* from the menu and then *Build all*
-6. Select *ann.exe* from the run button drop down
+4. Select the ANN folder within the project
+5. Visual Studio will automatically detect the CMakeLists.txt and configure the project
+6. Select *Build* from the menu and then *Build all*
 7. Run the project using the run button
 
 ## FAQ
