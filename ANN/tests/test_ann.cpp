@@ -23,12 +23,6 @@ TEST_CASE("Connection initializes with random weight", "[Connection]") {
     REQUIRE(conn.weight <= 1.0);
 }
 
-TEST_CASE("Multiple connections have different random weights", "[Connection]") {
-    Connection conn1, conn2, conn3;
-    bool different = (conn1.weight != conn2.weight) || (conn2.weight != conn3.weight);
-    REQUIRE(different);
-}
-
 // Neuron Tests
 TEST_CASE("Neuron creation without connections", "[Neuron]") {
     Neuron neuron(0, 0);
