@@ -30,24 +30,66 @@ The Artificial Neural Network class also has the capability to print the content
     ann.print();
 ```
 
+## Project Structure
+
+```
+ANN/
+├── Main.cpp                          # Main program entry point
+├── ArtificialNeuralNetwork.cpp/h     # Core neural network implementation
+├── Layer.cpp/h                       # Layer management
+├── Neuron.cpp/h                      # Individual neuron logic
+├── Connection.cpp/h                  # Neuron connections and weights
+├── TrainingSet.cpp/h                 # Training data handling
+├── CMakeLists.txt                    # CMake build configuration
+├── tests/
+│   ├── test_ann.cpp                  # Catch2 unit tests
+│   ├── catch.hpp                     # Catch2 framework header
+│   └── README.md                     # Testing documentation
+└── build/                            # Build artifacts (generated)
+    └── bin/
+        ├── ann                       # Main executable
+        └── test_ann                  # Test executable
+```
+
 ## Compilation
 
-### Using CMake
+### Prerequisites
+
+**CMake** (for CMake build method):
+```bash
+# Ubuntu/Debian
+sudo apt install cmake
+
+# Or using Snap (if apt repositories unavailable)
+sudo snap install cmake --classic
+
+# Verify installation
+cmake --version
+```
+
+**G++** compiler with C++17 support (included in most modern Linux distributions)
+
+### Using CMake (Recommended)
 ```bash
 # 1. Navigate into the ANN directory
 cd ANN
 
 # 2. Create a build directory
-mkdir build
+mkdir build && cd build
 
-# 3. Navigate into the build directory
-cd build
-
-# 4. Run cmake - targeting the parent directory
+# 3. Configure the project
 cmake ..
 
-# 5. Finish building the program with make
-make
+# 4. Build the project
+cmake --build .
+
+# 5. Run the program
+./bin/ann
+
+# 6. Run tests
+./bin/test_ann
+# or use CTest
+ctest
 ```
 
 ### Using G++
@@ -55,9 +97,45 @@ make
 # 1. Navigate into the ANN directory
 cd ANN
 
-# 2. Compile the executable
+# 2. Compile the main executable
 g++ -std=c++17 -o ann Main.cpp ArtificialNeuralNetwork.cpp Layer.cpp Neuron.cpp Connection.cpp TrainingSet.cpp
+
+# 3. Run the program
+./ann
 ```
+
+## Testing
+
+The project includes a comprehensive test suite using [Catch2](https://github.com/catchorg/Catch2), a modern C++ testing framework.
+
+### Running Tests
+
+**With CMake (Recommended):**
+```bash
+cd ANN/build
+ctest                    # Run all tests via CTest
+ctest --verbose          # Verbose output
+./bin/test_ann           # Run tests directly with Catch2
+```
+
+**With G++:**
+```bash
+cd ANN
+g++ -std=c++17 -o tests/test_ann tests/test_ann.cpp ArtificialNeuralNetwork.cpp Layer.cpp Neuron.cpp Connection.cpp TrainingSet.cpp
+./tests/test_ann
+```
+
+### Test Features
+
+- **15 test cases** covering all major components
+- **Tag-based filtering**: Run specific test categories
+  ```bash
+  ./bin/test_ann "[Connection]"   # Connection tests only
+  ./bin/test_ann "[Neuron]"       # Neuron tests only
+  ./bin/test_ann "[ANN]"          # ANN tests only
+  ```
+- **Detailed output**: Use `--success` flag for verbose assertions
+- See `ANN/tests/README.md` for more details
 
 ### Using Visual Studio
 1. Make sure [CMake support for C++](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio) is installed in your version of Visual Studio
