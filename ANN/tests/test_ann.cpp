@@ -16,6 +16,20 @@
 
 using namespace std;
 
+// RAII helper class for temporary test files
+class TempFile {
+private:
+    string filename;
+public:
+    TempFile(const string& name) : filename(name) {}
+    
+    ~TempFile() {
+        remove(filename.c_str());
+    }
+    
+    const string& name() const { return filename; }
+};
+
 // Connection Tests
 TEST_CASE("Connection initializes with random weight", "[Connection]") {
     Connection conn;
@@ -76,12 +90,14 @@ TEST_CASE("TrainingSet initialization", "[TrainingSet]") {
 }
 
 TEST_CASE("TrainingSet read CSV", "[TrainingSet]") {
-    ofstream testFile("test_data.csv");
+    TempFile tempFile("test_data.csv");
+    
+    ofstream testFile(tempFile.name());
     testFile << "1.0,2.0,3.0,1\n4.0,5.0,6.0,0\n7.0,8.0,9.0,1\n";
     testFile.close();
     
     TrainingSet ts;
-    ts.read("test_data.csv");
+    ts.read(tempFile.name());
     
     REQUIRE(ts.getNumberOfRows() == 3);
     REQUIRE(ts.getNumberOfColumns() == 4);
@@ -90,7 +106,7 @@ TEST_CASE("TrainingSet read CSV", "[TrainingSet]") {
     REQUIRE(record.size() == 3);
     REQUIRE(record[0] == Approx(1.0));
     
-    remove("test_data.csv");
+    // File will be automatically cleaned up by TempFile destructor
 }
 
 // ANN Tests
@@ -128,17 +144,19 @@ TEST_CASE("ANN multiple outputs", "[ANN]") {
 }
 
 TEST_CASE("ANN with TrainingSet", "[ANN][Integration]") {
-    ofstream testFile("test_train.csv");
+    TempFile tempFile("test_train.csv");
+    
+    ofstream testFile(tempFile.name());
     testFile << "0.0,0.0,0\n0.0,1.0,1\n1.0,0.0,1\n1.0,1.0,0\n";
     testFile.close();
     
     TrainingSet ts;
-    ts.read("test_train.csv");
+    ts.read(tempFile.name());
     REQUIRE(ts.getNumberOfRows() == 4);
     
     vector<unsigned> topology = {2, 4, 1};
     ArtificialNeuralNetwork ann(topology);
     REQUIRE(true);
     
-    remove("test_train.csv");
+    // File will be automatically cleaned up by TempFile destructor
 }
