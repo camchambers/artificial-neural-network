@@ -1,0 +1,47 @@
+name: Tests
+
+on:
+  push:
+    branches: [ main, testing ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake g++
+    
+    - name: Verify installations
+      run: |
+        cmake --version
+        g++ --version
+    
+    - name: Configure CMake
+      run: |
+        cd ANN
+        mkdir build
+        cd build
+        cmake ..
+    
+    - name: Build project
+      run: |
+        cd ANN/build
+        cmake --build .
+    
+    - name: Run tests with CTest
+      run: |
+        cd ANN/build
+        ctest --output-on-failure --verbose
+    
+    - name: Run tests with Catch2
+      run: |
+        cd ANN/build
+        ./bin/test_ann --success
