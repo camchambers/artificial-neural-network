@@ -1,4 +1,7 @@
 # Artificial Neural Network
+
+![Tests](https://github.com/camchambers/artificial-neural-network/workflows/Tests/badge.svg)
+
 >[Artificial Neural Networks](https://en.wikipedia.org/wiki/Artificial_neural_network) (ANNs) are biologically inspired models of human central nervous system activity [[1]](#footnote_1)[[2]](#footnote_2) commonly used for classification and regression [[3]](#footnote_3) in the field of [Machine Learning](https://en.wikipedia.org/wiki/Machine_learning). The following project is a basic implementation of an artificial neural network written in C++. 
 
 
