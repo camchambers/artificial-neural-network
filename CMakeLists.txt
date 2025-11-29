@@ -23,8 +23,6 @@ set(ANN_SOURCES
 add_library(ann ${ANN_SOURCES})
 
 # Set include directories for the library
-# CMake 3.10 may not fully support BUILD_INTERFACE for the target's own sources
-# So we add it to both PUBLIC (with generator) and target_sources include dirs
 target_include_directories(ann
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
