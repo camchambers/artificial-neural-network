@@ -31,6 +31,13 @@ public:
     void train(TrainingSet &trainingSet);
 
     /**
+     * @brief Feed forward input values through the network for prediction
+     * 
+     * @param inputValues The input values to feed through the network
+     */
+    void feedForward(const std::vector<double>& inputValues);
+
+    /**
      * @brief Returns the neural network results
      * 
      * @param resultValues 

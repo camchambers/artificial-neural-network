@@ -14,8 +14,6 @@ Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
     {
         for (auto connectionIndex = 0u; connectionIndex < numberOfOutputConnections; ++connectionIndex)
         {
-            cout << endl
-                 << "\t\tAdding connection " << (connectionIndex + 1) << " with " << numberOfOutputConnections << " outputs";
             connections.push_back(Connection());
         }
     }

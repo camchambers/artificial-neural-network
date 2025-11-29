@@ -27,6 +27,14 @@ public:
     std::vector<double> getRecord(int index) const;
 
     /**
+     * @brief Gets the class label for a particular record
+     * 
+     * @param index The index of the record
+     * @return int The class label
+     */
+    int getClassLabel(int index) const;
+
+    /**
      * @brief Scales training data to ensure attributes are weighted equally
      * 
      */

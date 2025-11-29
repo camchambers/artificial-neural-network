@@ -84,6 +84,17 @@ vector<double> TrainingSet::getRecord(int index) const
     return this->trainingData[index];
 }
 
+// Gets the class label for a particular record
+int TrainingSet::getClassLabel(int index) const
+{
+    if (index > this->numberOfRows)
+    {
+        cout << "Error: invalid training set index";
+        exit(1);
+    }
+    return this->classLabels[index];
+}
+
 void TrainingSet::getDimensions(std::string fileName)
 {
 
@@ -151,4 +162,35 @@ void TrainingSet::print()
         cout << " = " << this->classLabels[x] << endl;
     }
     cout << endl;
+}
+
+void TrainingSet::scale()
+{
+    // Min-Max normalization to scale features to [0, 1] range
+    int numFeatures = this->numberOfColumns - 1;
+    
+    for (int featureIndex = 0; featureIndex < numFeatures; ++featureIndex)
+    {
+        // Find min and max for this feature
+        double minVal = this->trainingData[0][featureIndex];
+        double maxVal = this->trainingData[0][featureIndex];
+        
+        for (int rowIndex = 1; rowIndex < this->numberOfRows; ++rowIndex)
+        {
+            double value = this->trainingData[rowIndex][featureIndex];
+            if (value < minVal) minVal = value;
+            if (value > maxVal) maxVal = value;
+        }
+        
+        // Scale feature if range is non-zero
+        double range = maxVal - minVal;
+        if (range > 0.0001) // Avoid division by zero
+        {
+            for (int rowIndex = 0; rowIndex < this->numberOfRows; ++rowIndex)
+            {
+                this->trainingData[rowIndex][featureIndex] = 
+                    (this->trainingData[rowIndex][featureIndex] - minVal) / range;
+            }
+        }
+    }
 }

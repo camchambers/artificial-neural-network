@@ -12,18 +12,10 @@ Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
     // Populate the Layer with Neurons based on the numberOfNeurons parameter
     for (auto neuronIndex = 0u; neuronIndex < numberOfNeurons; ++neuronIndex)
     {
-        cout << endl
-             << endl
-             << "\tAdding neuron " << (neuronIndex + 1) << " to layer " << layerIndex + 1 << ".";
         neurons.push_back(Neuron(neuronIndex, numberOfOutputs));
     }
 
     // Add a bias Neuron to the layer
-    cout << endl
-         << endl
-         << "\tAdding bias neuron "
-         << "(neuron " << numberOfNeurons + 1 << ")"
-         << " to layer " << layerIndex + 1 << ".";
     neurons.push_back(Neuron(numberOfNeurons, numberOfOutputs));
 }
 
@@ -43,9 +35,6 @@ void Layer::print() const
 // Forward definition for Neuron feed forward
 void Neuron::feedForward(Layer &previousLayer)
 {
-    // Display which neuron in which layer is feeding forward
-    cout << "\tLayer " << previousLayer.layerIndex + 2 << ", Neuron " << this->neuronIndex + 1 << " is feeding forward." << endl;
-
     // The sum of the inputs
     double sum = 0.0;
 
@@ -83,8 +72,8 @@ double Neuron::updateInputWeights(Layer &previousLayer)
 
         double newDeltaWeight = learningRate * neuron.outputValue * this->gradient + momentumValue * oldDeltaWeight;
 
-        neuron.connections[neuronIndex].deltaWeight = newDeltaWeight;
-        neuron.connections[neuronIndex].weight += newDeltaWeight;
+        neuron.connections[this->neuronIndex].deltaWeight = newDeltaWeight;
+        neuron.connections[this->neuronIndex].weight += newDeltaWeight;
     }
     return 0.0;
 }
