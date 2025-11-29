@@ -26,22 +26,21 @@ jobs:
     
     - name: Configure CMake
       run: |
-        cd ANN
         mkdir build
         cd build
         cmake ..
     
     - name: Build project
       run: |
-        cd ANN/build
+        cd build
         cmake --build .
     
     - name: Run tests with CTest
       run: |
-        cd ANN/build
+        cd build
         ctest --output-on-failure --verbose
     
-    - name: Run tests with Catch2
+    - name: Run tests directly
       run: |
-        cd ANN/build
-        ./bin/test_ann --success
+        cd build
+        ./test_ann --success
