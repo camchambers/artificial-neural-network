@@ -9,6 +9,10 @@ using namespace std;
 
 namespace ann {
 
+TrainingSet::TrainingSet() : numberOfRows(0), numberOfColumns(0)
+{
+}
+
 int TrainingSet::getNumberOfRows() const
 {
     return this->numberOfRows;

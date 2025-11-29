@@ -22,6 +22,13 @@ class TrainingSet
 {
 public:
     /**
+     * @brief Default constructor
+     * 
+     * Initializes an empty training set with zero rows and columns.
+     */
+    TrainingSet();
+
+    /**
      * @brief Reads a training set from a CSV file
      * 
      * @param filename Path to the CSV file to read
