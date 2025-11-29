@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Print configuration info
 message(STATUS "C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "Build Type: ${CMAKE_BUILD_TYPE}")
+message(STATUS "CMake Version: ${CMAKE_VERSION}")
 
 # Source files for the library
 set(ANN_SOURCES
@@ -22,12 +23,15 @@ set(ANN_SOURCES
 add_library(ann ${ANN_SOURCES})
 
 # Set include directories for the library
+# CMake 3.10 may not fully support BUILD_INTERFACE for the target's own sources
+# So we add it to both PUBLIC (with generator) and target_sources include dirs
 target_include_directories(ann
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 # Optional: Build examples
