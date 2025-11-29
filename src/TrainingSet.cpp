@@ -3,9 +3,11 @@
 #include <sstream>
 #include <iostream>
 #include <fstream>
-#include "TrainingSet.h"
+#include "ann/TrainingSet.h"
 
 using namespace std;
+
+namespace ann {
 
 int TrainingSet::getNumberOfRows() const
 {
@@ -17,16 +19,10 @@ int TrainingSet::getNumberOfColumns() const
     return this->numberOfColumns;
 }
 
-// Reads a file to create a training set
-// TODO Have the read function parse number of elements in the line -1 and create another function for parsing out the last element of each line (class label)
 void TrainingSet::read(std::string fileName)
 {
-
     // Get data set dimensions
     this->getDimensions(fileName);
-
-    // Temporary variable to store the parsed dataset
-    vector<vector<double>> data;
 
     // Input stream reader for reading the file
     ifstream inputFile(fileName);
@@ -50,8 +46,6 @@ void TrainingSet::read(std::string fileName)
 
         for (int columns = 0; columns <= this->numberOfColumns - 2; columns++)
         {
-            // A vector of parsed elements from the line
-
             getline(stringStream, substring, ',');
 
             // Convert the string to a double
@@ -71,9 +65,8 @@ void TrainingSet::read(std::string fileName)
 
     // Close the file connection
     inputFile.close();
-};
+}
 
-// Gets a record from the training set given a record index
 vector<double> TrainingSet::getRecord(int index) const
 {
     if (index > this->numberOfRows)
@@ -84,7 +77,6 @@ vector<double> TrainingSet::getRecord(int index) const
     return this->trainingData[index];
 }
 
-// Gets the class label for a particular record
 int TrainingSet::getClassLabel(int index) const
 {
     if (index > this->numberOfRows)
@@ -97,7 +89,6 @@ int TrainingSet::getClassLabel(int index) const
 
 void TrainingSet::getDimensions(std::string fileName)
 {
-
     int numberOfColumns = 0;
     int numberOfRows = 0;
 
@@ -125,7 +116,6 @@ void TrainingSet::getDimensions(std::string fileName)
         string substring;
 
         getline(stringStream, substring, ',');
-        // Convert the string to a double
     }
 
     // Determine number of rows
@@ -194,3 +184,5 @@ void TrainingSet::scale()
         }
     }
 }
+
+} // namespace ann

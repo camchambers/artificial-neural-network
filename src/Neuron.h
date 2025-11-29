@@ -2,6 +2,8 @@
 #include <vector>
 #include "Connection.h"
 
+namespace ann {
+
 class Layer;
 
 /**
@@ -66,6 +68,16 @@ public:
     double updateInputWeights(Layer &previousLayer);
 
     /**
+     * @brief Set learning rate for all neurons
+     */
+    static void setLearningRate(double rate);
+
+    /**
+     * @brief Set momentum value for all neurons
+     */
+    static void setMomentum(double momentum);
+
+    /**
      * @brief Prints all of the Connections of a Neuron
      * 
      * @param neuronIndex 
@@ -102,3 +114,5 @@ private:
      */
     double sumDerivativeOfWeights(Layer &nextLayer);
 };
+
+} // namespace ann

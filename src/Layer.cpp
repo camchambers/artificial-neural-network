@@ -4,6 +4,8 @@
 
 using namespace std;
 
+namespace ann {
+
 Layer::Layer(unsigned numberOfNeurons, unsigned index, unsigned numberOfOutputs)
 {
     // Assign layer index
@@ -77,3 +79,5 @@ double Neuron::updateInputWeights(Layer &previousLayer)
     }
     return 0.0;
 }
+
+} // namespace ann

@@ -1,5 +1,7 @@
 #pragma once
 
+namespace ann {
+
 /**
  * @brief Connections link neurons and define how strongly linked neurons 
  * are according to a weight value
@@ -27,3 +29,5 @@ public:
      */
     void print() const;
 };
+
+} // namespace ann

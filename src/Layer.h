@@ -1,6 +1,8 @@
 #pragma once
 #include "Neuron.h"
 
+namespace ann {
+
 class Layer
 {
 public:
@@ -29,3 +31,5 @@ public:
      */
     void print() const;
 };
+
+} // namespace ann

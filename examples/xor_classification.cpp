@@ -1,15 +1,17 @@
 /**
- * Artificial Neural Network 
+ * XOR Classification Example
  * 
- * A simple implementation of an artificial neural network 
+ * Demonstrates using the ANN library to solve the XOR problem
  */
 
 #include <iostream>
 #include <iomanip>
-#include "TrainingSet.h"
-#include "ArtificialNeuralNetwork.h"
+#include "ann/TrainingSet.h"
+#include "ann/ArtificialNeuralNetwork.h"
+#include "ann/TrainingConfig.h"
 
 using namespace std;
+using namespace ann;
 
 int main(int argc, char *argv[])
 {
@@ -57,40 +59,48 @@ int main(int argc, char *argv[])
     std::vector<double> expectedOutputs = {0.0, 1.0, 1.0, 0.0};
 
     for (size_t i = 0; i < testInputs.size(); ++i) {
-        ann.feedForward(testInputs[i]);
-        std::vector<double> results;
-        ann.getResults(results);
+        auto prediction = ann.predict(testInputs[i]);
         
         cout << "Input: [" << testInputs[i][0] << ", " << testInputs[i][1] 
-             << "] -> Output: " << results[0]
+             << "] -> Output: " << prediction.probabilities[0]
              << " (Expected: " << expectedOutputs[i] << ")" << endl;
     }
 
-    // Train the neural network
+    // Configure and train the neural network
     cout << endl;
-    ann.train(trainingSet);
+    TrainingConfig config;
+    config.epochs = 1000;
+    config.learningRate = 0.15;
+    config.momentum = 0.5;
+    config.verbose = true;
+    config.printInterval = 200;
+    
+    // Add a progress callback
+    config.progressCallback = [](int epoch, double error) {
+        // Custom logging could go here
+    };
+    
+    ann.train(trainingSet, config);
 
     // Test network AFTER training
     cout << endl << "=== TESTING AFTER TRAINING ===" << endl;
     
     for (size_t i = 0; i < testInputs.size(); ++i) {
-        ann.feedForward(testInputs[i]);
-        std::vector<double> results;
-        ann.getResults(results);
+        auto prediction = ann.predict(testInputs[i]);
         
-        double prediction = results[0] > 0.5 ? 1.0 : 0.0;
-        bool correct = (prediction == expectedOutputs[i]);
+        bool correct = (prediction.classLabel == static_cast<int>(expectedOutputs[i]));
         
         cout << "Input: [" << testInputs[i][0] << ", " << testInputs[i][1] 
-             << "] -> Output: " << results[0]
-             << " -> Prediction: " << prediction
+             << "] -> Output: " << prediction.probabilities[0]
+             << " -> Prediction: " << prediction.classLabel
              << " (Expected: " << expectedOutputs[i] << ") "
              << (correct ? "✓" : "✗") << endl;
     }
 
     cout << endl
          << "The network has successfully learned to classify the XOR problem!" << endl
-         << "Press Enter to exit...";
+         << "Final training error: " << ann.getError() << endl
+         << endl;
     cin.get();
 
     return 0;

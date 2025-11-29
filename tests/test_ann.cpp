@@ -5,16 +5,17 @@
 
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "../Connection.h"
-#include "../Neuron.h"
-#include "../Layer.h"
-#include "../TrainingSet.h"
-#include "../ArtificialNeuralNetwork.h"
+#include "../src/Connection.h"
+#include "../src/Neuron.h"
+#include "../src/Layer.h"
+#include "ann/TrainingSet.h"
+#include "ann/ArtificialNeuralNetwork.h"
 
 #include <vector>
 #include <fstream>
 
 using namespace std;
+using namespace ann;
 
 // RAII helper class for temporary test files
 class TempFile {

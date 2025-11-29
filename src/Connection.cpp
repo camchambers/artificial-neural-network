@@ -4,6 +4,8 @@
 
 using namespace std;
 
+namespace ann {
+
 // Helper function to get a thread-safe random number generator
 // Using static local variables ensures initialization happens on first use
 static mt19937& getRandomGenerator()
@@ -23,3 +25,5 @@ void Connection::print() const
 {
     cout << weight;
 }
+
+} // namespace ann

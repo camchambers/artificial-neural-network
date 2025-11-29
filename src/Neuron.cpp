@@ -1,8 +1,11 @@
 #include <iostream>
 #include <cmath>
 #include "Neuron.h"
+#include "Layer.h"
 
 using namespace std;
+
+namespace ann {
 
 Neuron::Neuron(unsigned neuronIndex, unsigned numberOfOutputConnections)
 {
@@ -60,6 +63,16 @@ void Neuron::calculateOutputGradients(double targetValue)
     this->gradient = delta * activationFunctionDerivative(this->outputValue);
 }
 
+void Neuron::setLearningRate(double rate)
+{
+    learningRate = rate;
+}
+
+void Neuron::setMomentum(double momentum)
+{
+    momentumValue = momentum;
+}
+
 double Neuron::learningRate = 0.15;
 
 double Neuron::momentumValue = 0.5;
@@ -75,3 +88,5 @@ void Neuron::print() const
     }
     cout << endl;
 }
+
+} // namespace ann
