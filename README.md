@@ -302,5 +302,5 @@ in nervous activity. The bulletin of mathematical biophysics, 5(4):115–133, 19
 <a name="footnote_2">[2]</a> John J Hopfield and David W Tank. Computing with neural circuits: A model.
 Science, 233(4764):625–633, 1986.
 
-<a name="footnote_3">[2]</a> Pang-Ning Tan, Michael Steinbach, and Vipin Kumar. Introduction to data
+<a name="footnote_3">[3]</a> Pang-Ning Tan, Michael Steinbach, and Vipin Kumar. Introduction to data
 mining. 1st. Boston: Pearson Addison Wesley. xxi, 2018.
